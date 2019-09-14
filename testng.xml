@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Meizu M6 Lina">
+        <parameter name="UDID_" value="711H2BSQ22CPF"/>
+        <parameter name="appPackage_" value="com.sepulsa.androiddev"/>
+        <parameter name="appActivity_" value="com.sepulsa.android.views.activities.WelcomeActivity"/>
+        <parameter name="deviceName_" value="AP"/>
+        <parameter name="androidVersion_" value="7.0"/>
+        <parameter name="appiumHost_" value="0.0.0.0"/>
+        <parameter name="nodeJsPort_" value="4723"/>
+        <classes>
+            <class name="runners.DeviceXXRunner"/>
+        </classes>
+    </test>
+</suite>
