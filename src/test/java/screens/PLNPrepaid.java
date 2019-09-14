@@ -44,8 +44,14 @@ public class PLNPrepaid extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"BCA Virtual Account\"))")
     protected AndroidElement titleBayarBCA;
 
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Mandiri Virtual Account\"))")
+    protected AndroidElement titleBayarMandiri;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Virtual Account Semua Bank\"))")
+    protected AndroidElement titleBayarSemuaBank;
+
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
-    protected AndroidElement buttonBayarBCA;
+    protected AndroidElement buttonBayar;
 
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtThankYou")
     protected AndroidElement titleThankYou;
@@ -111,13 +117,36 @@ public class PLNPrepaid extends AbstractObjectScreen {
         titleBayarBCA.click();
     }
 
-    public void klikBayarBCA(){
-        buttonBayarBCA.click();
+    public void pilihBayarMandiri(){
+        titleBayarMandiri.click();
     }
 
-    public void diHalamanTagihan(){
+    public void pilihBayarSemuaBank(){
+        titleBayarSemuaBank.click();
+    }
+
+    public void klikBayar(){
+        buttonBayar.click();
+    }
+
+    public void diHalamanTagihanBCA(){
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(titleThankYou));
         wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(),"Informasi pembayaran Virtual Account Bank BCA","Salah Metode");
+    }
+
+    public void diHalamanTagihanMandiri(){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Mandiri Virtual Account","Salah Metode");
+    }
+
+    public void diHalamanTagihanSemuaBank(){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Virtual Account Semua Bank","Salah Metode");
     }
 }

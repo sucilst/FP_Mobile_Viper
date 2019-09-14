@@ -60,19 +60,20 @@ public class MobilePLNPrabayarBCA extends BaseStep {
 
     @When("^user memilih metode pembayaran BCA Virtual Account$")
     public void user_memilih_metode_pembayaran_BCA_Virtual_Account() throws Throwable {
+        plnPrepaid.totalTagihanAwalMuncul();
         plnPrepaid.pilihanMetodeBayar();
         plnPrepaid.pilihBayarBCA();
     }
 
     @When("^user tap pada tombol Bayar$")
     public void user_tap_pada_tombol_Bayar() throws Throwable {
-        plnPrepaid.klikBayarBCA();
+        plnPrepaid.klikBayar();
     }
 
     @When("^user masuk ke halaman Informasi Pembayaran$")
     public void user_masuk_ke_halaman_Informasi_Pembayaran() throws Throwable {
         popUpPage.disablePopUp();
-        plnPrepaid.diHalamanTagihan();
+        plnPrepaid.diHalamanTagihanBCA();
     }
 
     @When("^user membayar lunas tagihan melalui BCA Virtual Account$")
