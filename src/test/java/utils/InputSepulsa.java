@@ -19,5 +19,11 @@ public interface InputSepulsa {
     String tokenOKSecond = "01428800701";
     String tokenFail = "0142880010";
 
+    // kodeListrikPascabayar
+    String idOKFirst = "512345610000";
+    String idOKSecond = "512345600003";
+    String idPaid = "512345600000";
+    String idError = "51234560000";
+
 
 }
