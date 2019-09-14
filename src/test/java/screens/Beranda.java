@@ -79,4 +79,7 @@ public class Beranda extends AbstractObjectScreen {
         menuSignOut.click();
     }
 
+    public void menuSepulsaCredit() {
+        buttonSepulsaKredit.click();
+    }
 }

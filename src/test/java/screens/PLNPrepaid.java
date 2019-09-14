@@ -3,27 +3,31 @@ package screens;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.FindElements;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class PLNPrepaid extends AbstractObjectScreen {
 
     @FindBy(linkText = "Prabayar")
     protected AndroidElement tabPrabayar;
 
-    @AndroidFindBy(id="com.sepulsa.androiddev:id/et_no_pln")
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_no_pln")
     protected AndroidElement fieldIDPLN;
 
-    @AndroidFindBy(id="com.sepulsa.androiddev:id/et_phone_number")
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_phone_number")
     protected AndroidElement fieldPhonePLN;
 
     @FindBy(xpath = "//android.widget.TextView[@text='Informasi Pelanggan']")
     protected AndroidElement boxInformasiPelanggan;
 
-    @FindBy(id="com.sepulsa.androiddev:id/electricity_product_container")
+    @FindBy(id = "com.sepulsa.androiddev:id/electricity_product_container")
     protected AndroidElement boxPilihanToken;
 
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/inquiry_result_text")
@@ -59,12 +63,21 @@ public class PLNPrepaid extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtPaymentGreeting")
     protected AndroidElement titleDetailBayar;
 
+    // buat sepulsa credit
+    @FindBy(linkText = "Rp0")
+    protected List<WebElement> sisaBayarSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Sepulsa Kredit\"))")
+    protected AndroidElement titleSepulsaCredit;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/img_sepulsa_kredit")
+    protected AndroidElement ikonBayarSepulsaKredit;
+
+    @FindBy(linkText = "Sepulsa Kredit")
+    protected List<WebElement> adaSepulsaCredit;
+
     public PLNPrepaid(AndroidDriver driver) {
         super(driver);
-    }
-
-    public void pilihPrabayar(){
-       tabPrabayar.click();
     }
 
     public void isiIDPel(String idPel) {
@@ -78,75 +91,102 @@ public class PLNPrepaid extends AbstractObjectScreen {
         driver.hideKeyboard();
     }
 
-    public void statusPelangganTampil(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void statusPelangganTampil() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(boxInformasiPelanggan));
         Assert.assertTrue(boxInformasiPelanggan.isDisplayed());
     }
 
-    public void idPelangganMuncul(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void idPelangganMuncul() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(boxPilihanToken));
         Assert.assertTrue(boxPilihanToken.isDisplayed());
     }
 
-    public void beliToken100k(){
+    public void beliToken100k() {
         token100k.click();
     }
 
-    public void beliToken50k() { token50k.click();}
+    public void beliToken50k() {
+        token50k.click();
+    }
 
     public void totalTagihanAwalMuncul() {
-        WebDriverWait wait = new WebDriverWait(driver,30);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(totalBayar));
         Assert.assertTrue(totalBayar.isDisplayed());
     }
-    public void statusGagalTampil(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+
+    public void statusGagalTampil() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
         Assert.assertTrue(boxIDSalah.isDisplayed());
     }
 
-    public void pilihanMetodeBayar(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void pilihanMetodeBayar() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(titleMetodeBayar));
         Assert.assertTrue(titleMetodeBayar.isDisplayed());
     }
 
-    public void pilihBayarBCA(){
+    public void pilihBayarBCA() {
         titleBayarBCA.click();
     }
 
-    public void pilihBayarMandiri(){
+    public void pilihBayarMandiri() {
         titleBayarMandiri.click();
     }
 
-    public void pilihBayarSemuaBank(){
+    public void pilihBayarSemuaBank() {
         titleBayarSemuaBank.click();
     }
 
-    public void klikBayar(){
+    public void klikBayar() {
         buttonBayar.click();
     }
 
-    public void diHalamanTagihanBCA(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void diHalamanTagihanBCA() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(titleThankYou));
         wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
-        Assert.assertEquals(titleDetailBayar.getText(),"Informasi pembayaran Virtual Account Bank BCA","Salah Metode");
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi pembayaran Virtual Account Bank BCA", "Salah Metode");
     }
 
-    public void diHalamanTagihanMandiri(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void diHalamanTagihanMandiri() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(titleThankYou));
         wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
-        Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Mandiri Virtual Account","Salah Metode");
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi Pembayaran Mandiri Virtual Account", "Salah Metode");
     }
 
-    public void diHalamanTagihanSemuaBank(){
-        WebDriverWait wait = new WebDriverWait(driver,30);
+    public void diHalamanTagihanSemuaBank() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(titleThankYou));
         wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
-        Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Virtual Account Semua Bank","Salah Metode");
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi Pembayaran Virtual Account Semua Bank", "Salah Metode");
+    }
+
+    // sepulsa credit
+    public void saldoSepulsaCreditCukup() {
+        Assert.assertFalse((sisaBayarSepulsaCredit.size())==0);
+    }
+
+    public void saldoSepulsaCreditKurang() {
+        Assert.assertEquals(0, sisaBayarSepulsaCredit.size());
+    }
+
+    public void pilihBayarSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleSepulsaCredit));
+    }
+
+    public void diHalamanSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(ikonBayarSepulsaKredit));
+    }
+
+    public void sepulsaCreditTidakTersedia(){
+        Assert.assertEquals(0, adaSepulsaCredit.size());
     }
 }
