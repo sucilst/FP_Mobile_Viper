@@ -32,6 +32,26 @@ public class PLNPrepaid extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rp 100.000\")")
     protected AndroidElement token100k;
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rp 50.000\")")
+    protected AndroidElement token50k;
+
+    @FindBy(id = "com.sepulsa.androiddev:id/tv_title")
+    protected AndroidElement totalBayar;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Pilih Metode Pembayaran\")")
+    protected AndroidElement titleMetodeBayar;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"BCA Virtual Account\"))")
+    protected AndroidElement titleBayarBCA;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
+    protected AndroidElement buttonBayarBCA;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtThankYou")
+    protected AndroidElement titleThankYou;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtPaymentGreeting")
+    protected AndroidElement titleDetailBayar;
 
     public PLNPrepaid(AndroidDriver driver) {
         super(driver);
@@ -68,10 +88,36 @@ public class PLNPrepaid extends AbstractObjectScreen {
         token100k.click();
     }
 
+    public void beliToken50k() { token50k.click();}
+
+    public void totalTagihanAwalMuncul() {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(totalBayar));
+        Assert.assertTrue(totalBayar.isDisplayed());
+    }
     public void statusGagalTampil(){
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
         Assert.assertTrue(boxIDSalah.isDisplayed());
+    }
 
+    public void pilihanMetodeBayar(){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(titleMetodeBayar));
+        Assert.assertTrue(titleMetodeBayar.isDisplayed());
+    }
+
+    public void pilihBayarBCA(){
+        titleBayarBCA.click();
+    }
+
+    public void klikBayarBCA(){
+        buttonBayarBCA.click();
+    }
+
+    public void diHalamanTagihan(){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
     }
 }
