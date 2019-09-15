@@ -12,6 +12,7 @@ import utils.BaseAppium;
 @CucumberOptions(
         features = "src/test/resources/features/",
         tags = "@pulsaPermata_input, @pulsaPermata_phonebook, @pulsaPermata_noHPInvalid, @pulsaMandiri_input, @pulsaMandiri_phonebook, @pulsaMandiri_noHPInvalid, @pulsaBCA_input, @pulsaBCA_phonebook, @pulsaBCA_noHPInvalid",
+
         glue = "stepDefinitions",
         plugin = {
                 "pretty",

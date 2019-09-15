@@ -3,6 +3,7 @@ package screens;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.testng.Assert;
 
 public class MainPage extends AbstractObjectScreen {
 
@@ -48,6 +49,9 @@ public class MainPage extends AbstractObjectScreen {
 
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/fr_btn_register")
     protected AndroidElement buttonRegister;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/fl_txt_forgot")
+    protected AndroidElement forgotPassword;
 
     // pop up toast box
 
@@ -106,5 +110,12 @@ public class MainPage extends AbstractObjectScreen {
 
     public void testToast() {
 
+    }
+
+    public void keluarDariAplikasi(){
+        Assert.assertTrue(tabRegister.isDisplayed());
+    }
+    public void diHalamanUtama() {
+        Assert.assertTrue((forgotPassword.isDisplayed()));
     }
 }
