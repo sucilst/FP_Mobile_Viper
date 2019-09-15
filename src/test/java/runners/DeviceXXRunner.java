@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@listrikPLN",
+        tags = "@BPJSSemuaBank",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",
