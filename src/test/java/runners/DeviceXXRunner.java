@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@PLNPrabayarSepulsaKreditKurang",
+        tags = "@signout",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",

@@ -34,6 +34,7 @@ public class MobileSignOut extends BaseStep {
 
     @When("^user tap tombol menu$")
     public void user_tap_tombol_menu() throws Throwable {
+        beranda.klikMenuAdmin();
         beranda.pilihUserMenu();
     }
 

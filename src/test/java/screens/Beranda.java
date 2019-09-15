@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -31,8 +32,9 @@ public class Beranda extends AbstractObjectScreen {
     protected AndroidElement buttonSepulsaKredit;
 
     // sign out menu
-    @AndroidFindBy(className = "//android.widget.HorizontalScrollView//android.widget.LinearLayout//android.support.v7.app.ActionBar$Tab[@index=‘4’]")
-    protected AndroidElement buttonUserMenu;
+    //@AndroidFindBy(className = "//android.support.v7.app.ActionBar.Tab[@index=‘4’]")
+    @FindBy(className = "android.support.v7.app.ActionBar$Tab")
+    protected List<AndroidElement> bottomMenu;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='MENU']")
     protected AndroidElement tabMenu;
@@ -68,8 +70,16 @@ public class Beranda extends AbstractObjectScreen {
         buttonBPJS.click();
     }
 
+   public void klikMenuAdmin() {
+       AndroidElement userMenu = bottomMenu.get(4);
+       userMenu.click();
+   }
+
+   public void klikMenuHistory() {
+        AndroidElement historyMenu = bottomMenu.get(2);
+        historyMenu.click();
+   }
     public void pilihUserMenu() {
-        buttonUserMenu.click();
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(tabMenu));
         Assert.assertTrue(tabMenu.isDisplayed());

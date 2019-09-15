@@ -42,6 +42,8 @@ public class BayarBPJS extends AbstractObjectScreen {
     }
 
     public void bayarSekarang(){
-
+        buttonBayarTagihan.click();
     }
+
+
 }
