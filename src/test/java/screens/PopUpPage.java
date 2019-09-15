@@ -19,6 +19,14 @@ public class PopUpPage extends AbstractObjectScreen {
     @AndroidFindBy(id="android:id/message")
     protected AndroidElement popupMessage;
 
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/btn_close")
+    protected AndroidElement popupKamuSukaSepulsa;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/iv_close")
+    protected AndroidElement popupAutoPay;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buat Auto Pay?']")
+    protected AndroidElement validatePopUpAutoPay;
 
     public PopUpPage(AndroidDriver driver) {
         super(driver);
@@ -46,5 +54,17 @@ public class PopUpPage extends AbstractObjectScreen {
             if(popupMessage.isDisplayed())
                 wait();
         } catch (Exception e) {}
+    }
+
+    public void munculAutoPay() {
+        if(validatePopUpAutoPay.isDisplayed()) {
+            popupAutoPay.click();
+        }
+    }
+
+    public void munculKamuSukaSepulsa() {
+        if(popupKamuSukaSepulsa.isDisplayed()) {
+            popupKamuSukaSepulsa.click();
+        }
     }
 }
