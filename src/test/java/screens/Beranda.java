@@ -77,6 +77,8 @@ public class Beranda extends AbstractObjectScreen {
 
    public void klikMenuHistory() {
         AndroidElement historyMenu = bottomMenu.get(2);
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(historyMenu));
         historyMenu.click();
    }
     public void pilihUserMenu() {

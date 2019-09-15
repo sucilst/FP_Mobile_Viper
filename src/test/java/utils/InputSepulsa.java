@@ -25,5 +25,10 @@ public interface InputSepulsa {
     String idPaid = "512345600000";
     String idError = "51234560000";
 
+    // kodeBPJS
+    String bpjsFail = "0000001430071800";
+    String bpjsOK = "0000001430071801";
+    String bpjsPaid = "0000001430071802";
+
 
 }

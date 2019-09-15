@@ -15,11 +15,38 @@ public class BayarBPJS extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/ilb_edt_nobpjs")
     protected AndroidElement fieldNoBPJS;
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Informasi Pelanggan']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
     protected AndroidElement boxInformasiPelanggan;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/bpjs_inquiry_result_text")
+    protected AndroidElement kolomIDInvalid;
 
     @AndroidFindBy(id="com.sepulsa.androiddev:id/bk_btn_lanjut")
     protected AndroidElement buttonBayarTagihan;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Pilih Metode Pembayaran\")")
+    protected AndroidElement titleMetodeBayar;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"BCA Virtual Account\"))")
+    protected AndroidElement titleBayarBCA;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Mandiri Virtual Account\"))")
+    protected AndroidElement titleBayarMandiri;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Virtual Account Semua Bank\"))")
+    protected AndroidElement titleBayarSemuaBank;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
+    protected AndroidElement buttonBayar;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtThankYou")
+    protected AndroidElement titleThankYou;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtPaymentGreeting")
+    protected AndroidElement titleDetailBayar;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"KEMBALI KE BERANDA\").instance(0))")
+    protected AndroidElement hyperlinkBeranda;
 
     public BayarBPJS(AndroidDriver driver) {
         super(driver);
@@ -28,6 +55,10 @@ public class BayarBPJS extends AbstractObjectScreen {
     public void isiNoBPJS(String kodeBPJS){
         fieldNoBPJS.sendKeys(kodeBPJS);
         driver.hideKeyboard();
+    }
+
+    public void fieldHPKosong(){
+        fieldPhoneBPJS.clear();
     }
 
     public void isiNoHP(String phoneBPJS){
@@ -45,5 +76,51 @@ public class BayarBPJS extends AbstractObjectScreen {
         buttonBayarTagihan.click();
     }
 
+    public void pilihanMetodeBayar() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleMetodeBayar));
+        Assert.assertTrue(titleMetodeBayar.isDisplayed());
+    }
+
+    public void pilihBayarBCA() {
+        titleBayarBCA.click();
+    }
+
+    public void pilihBayarMandiri() {
+        titleBayarMandiri.click();
+    }
+
+    public void pilihBayarSemuaBank() {
+        titleBayarSemuaBank.click();
+    }
+
+    public void klikBayar() {
+        buttonBayar.click();
+    }
+
+    public void diHalamanTagihanBCA() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi pembayaran Virtual Account Bank BCA", "Salah Metode");
+    }
+
+    public void diHalamanTagihanMandiri() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi Pembayaran Mandiri Virtual Account", "Salah Metode");
+    }
+
+    public void diHalamanTagihanSemuaBank() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
+        Assert.assertEquals(titleDetailBayar.getText(), "Informasi Pembayaran Virtual Account Semua Bank", "Salah Metode");
+    }
+
+    public void keHalamanBeranda() {
+        hyperlinkBeranda.click();
+    }
 
 }
