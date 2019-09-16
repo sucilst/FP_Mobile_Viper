@@ -13,11 +13,20 @@ public interface InputSepulsa {
     String wrongMail = "retnowijik@gmail.com";
     String wrongPhone = "";
     String wrongPassword = "";
+    String noTara1 = "08112233445566";
+    String passTara1 = "sepulsa123";
+    String noOpi = "085678900123";
+    String passOpi = "testersepulsa123";
 
     // kodeListrikPrabayar
     String tokenOKFirst = "01428800700";
     String tokenOKSecond = "01428800701";
     String tokenFail = "0142880010";
+
+    //No Handphone Isi pulsa
+    String no1_success = "081234000001";
+    String no2_failed = "081234000011";
+    String no3_invalidNumber = "081234000003";
 
     // kodeListrikPascabayar
     String idOKFirst = "512345610000";
@@ -33,4 +42,5 @@ public interface InputSepulsa {
     // pesan error
     String idPLNPrabayarSalah = "No ID Pelanggan yang Anda masukkan salah. Mohon cek dan masukkan ulang No ID Pelanggan Anda.";
     String generalError = "General Error";
+
 }

@@ -31,7 +31,6 @@ public class BaseAppium {
                             String androidVersion_, String appiumHost_, String nodeJsPort_) throws
             MalformedURLException, InterruptedException {
 
-
         File f = new File(System.getProperty("user.dir") + "/app");
         File fs = new File(f, "app-sandbox-debug.apk");
 
