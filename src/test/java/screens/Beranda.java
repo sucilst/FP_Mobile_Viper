@@ -31,8 +31,6 @@ public class Beranda extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/img_sepulsa_kredit")
     protected AndroidElement buttonSepulsaKredit;
 
-    // sign out menu
-    //@AndroidFindBy(className = "//android.support.v7.app.ActionBar.Tab[@index=‘4’]")
     @FindBy(className = "android.support.v7.app.ActionBar$Tab")
     protected List<AndroidElement> bottomMenu;
 
@@ -41,8 +39,6 @@ public class Beranda extends AbstractObjectScreen {
 
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/menu_signout")
     protected AndroidElement menuSignOut;
-
-
 
     public Beranda(AndroidDriver driver) {
         super(driver);

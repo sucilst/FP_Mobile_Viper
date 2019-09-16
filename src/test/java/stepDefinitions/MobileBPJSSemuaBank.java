@@ -109,7 +109,7 @@ public class MobileBPJSSemuaBank extends BaseStep {
 
     @Then("^layar akan menunjukkan bahwa nomor BPJS tidak terdaftar dan tidak dapat dibayar dengan metode VA Semua Bank$")
     public void layar_akan_menunjukkan_bahwa_nomor_BPJS_tidak_terdaftar_dan_tidak_dapat_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
-
+        bayarBPJS.statusInvalidMuncul();
     }
 
     @When("^user memasukkan no BPJS Kesehatan yang sudah dibayar untuk dibayar dengan metode VA Semua Bank$")
@@ -135,11 +135,12 @@ public class MobileBPJSSemuaBank extends BaseStep {
     @Then("^user akan otomatis sign out dari aplikasi Sepulsa \\(BPJS VA Semua Bank\\)$")
     public void user_akan_otomatis_sign_out_dari_aplikasi_Sepulsa_BPJS_VA_Semua_Bank() throws Throwable {
         mainPage.diHalamanUtama();
+        // masukin toast boxnya
     }
 
     @Then("^user diarahkan ke halaman utama aplikasi Sepulsa \\(BPJS VA Semua Bank\\)$")
     public void user_diarahkan_ke_halaman_utama_aplikasi_Sepulsa_BPJS_VA_Semua_Bank() throws Throwable {
-
+        mainPage.diHalamanUtama();
     }
 
     @When("^user mengosongkan kolom BPJS Kesehatan yang akan dibayar dengan metode VA Semua Bank$")
