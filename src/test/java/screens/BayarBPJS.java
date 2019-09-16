@@ -123,4 +123,8 @@ public class BayarBPJS extends AbstractObjectScreen {
         hyperlinkBeranda.click();
     }
 
+    public void statusInvalidMuncul () {
+        kolomIDInvalid.isDisplayed();
+    }
+
 }
