@@ -30,5 +30,7 @@ public interface InputSepulsa {
     String bpjsOK = "0000001430071801";
     String bpjsPaid = "0000001430071802";
 
-
+    // pesan error
+    String idPLNPrabayarSalah = "No ID Pelanggan yang Anda masukkan salah. Mohon cek dan masukkan ulang No ID Pelanggan Anda.";
+    String generalError = "General Error";
 }

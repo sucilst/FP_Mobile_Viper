@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.InputSepulsa;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class PLNPrepaid extends AbstractObjectScreen {
     protected AndroidElement fieldPhonePLN;
 
     @FindBy(xpath = "//android.widget.TextView[@text='Informasi Pelanggan']")
-    protected AndroidElement boxInformasiPelanggan;
+    protected List<AndroidElement> boxInformasiPelanggan;
 
     @FindBy(id = "com.sepulsa.androiddev:id/electricity_product_container")
     protected AndroidElement boxPilihanToken;
@@ -64,8 +65,8 @@ public class PLNPrepaid extends AbstractObjectScreen {
     protected AndroidElement titleDetailBayar;
 
     // buat sepulsa credit
-    @FindBy(linkText = "Rp0")
-    protected List<WebElement> sisaBayarSepulsaCredit;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rp0\")")
+    protected List<AndroidElement> sisaBayarSepulsaCredit;
 
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Sepulsa Kredit\"))")
     protected AndroidElement titleSepulsaCredit;
@@ -73,8 +74,14 @@ public class PLNPrepaid extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/img_sepulsa_kredit")
     protected AndroidElement ikonBayarSepulsaKredit;
 
-    @FindBy(linkText = "Sepulsa Kredit")
-    protected List<WebElement> adaSepulsaCredit;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Sepulsa Kredit\")")
+    protected List<AndroidElement> adaSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"KEMBALI KE BERANDA\").instance(0))")
+    protected AndroidElement hyperlinkBeranda;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
+    protected List<AndroidElement> adaButtonBayar;
 
     public PLNPrepaid(AndroidDriver driver) {
         super(driver);
@@ -91,24 +98,36 @@ public class PLNPrepaid extends AbstractObjectScreen {
         driver.hideKeyboard();
     }
 
-    public void statusPelangganTampil() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOf(boxInformasiPelanggan));
-        Assert.assertTrue(boxInformasiPelanggan.isDisplayed());
+    public void kolomIDKosong(){
+        fieldIDPLN.clear();
     }
 
+    public void kolomHandphoneKosong(){
+        fieldPhonePLN.clear();
+    }
+
+    public void statusPelangganTampil() {
+        Assert.assertFalse((boxInformasiPelanggan.size())==0);
+    }
+
+    public void statusPelangganTidakTampil() {
+        Assert.assertEquals(0,boxInformasiPelanggan.size());
+    }
     public void idPelangganMuncul() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(boxPilihanToken));
         Assert.assertTrue(boxPilihanToken.isDisplayed());
     }
 
-    public void beliToken100k() {
-        token100k.click();
-    }
-
-    public void beliToken50k() {
-        token50k.click();
+    public void beliToken (String nominal) {
+        switch (nominal){
+            case "Rp 50.000":
+                token50k.click();
+                break;
+            case "Rp 100.000":
+                token100k.click();
+                break;
+        }
     }
 
     public void totalTagihanAwalMuncul() {
@@ -121,6 +140,7 @@ public class PLNPrepaid extends AbstractObjectScreen {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
         Assert.assertTrue(boxIDSalah.isDisplayed());
+        Assert.assertEquals(boxIDSalah.getText(), InputSepulsa.idPLNPrabayarSalah,"IDnya bener");
     }
 
     public void pilihanMetodeBayar() {
@@ -172,7 +192,10 @@ public class PLNPrepaid extends AbstractObjectScreen {
     }
 
     public void saldoSepulsaCreditKurang() {
-        Assert.assertEquals(0, sisaBayarSepulsaCredit.size());
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, sisaBayarSepulsaCredit.size());
+        } catch (Exception e) {}
     }
 
     public void pilihBayarSepulsaCredit() {
@@ -187,6 +210,28 @@ public class PLNPrepaid extends AbstractObjectScreen {
     }
 
     public void sepulsaCreditTidakTersedia(){
-        Assert.assertEquals(0, adaSepulsaCredit.size());
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaSepulsaCredit.size());
+        } catch (Exception e) {}
+
+    }
+
+    public void bayarSepulsaCreditTidakTersedia() {
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaButtonBayar.size());
+        } catch (Exception e) {
+        }
+    }
+
+    public void tungguProsesPembayaran(){
+        try{
+            Thread.sleep(30000);
+        } catch (Exception e) {}
+    }
+
+    public void keHalamanBeranda(){
+        hyperlinkBeranda.click();
     }
 }
