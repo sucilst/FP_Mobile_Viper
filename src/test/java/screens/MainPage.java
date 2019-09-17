@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.testng.Assert;
+import utils.InputSepulsa;
 
 public class MainPage extends AbstractObjectScreen {
 
@@ -54,6 +55,8 @@ public class MainPage extends AbstractObjectScreen {
     protected AndroidElement forgotPassword;
 
     // pop up toast box
+    @AndroidFindBy(xpath = "//android.widget.Toast[1]")
+    protected AndroidElement toastMessage;
 
     public MainPage(AndroidDriver driver) {
         super(driver);
@@ -112,6 +115,9 @@ public class MainPage extends AbstractObjectScreen {
 
     }
 
+    public void sessionTimeOut(){
+        Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.timeOut));
+    }
     public void keluarDariAplikasi(){
         Assert.assertTrue(tabRegister.isDisplayed());
     }

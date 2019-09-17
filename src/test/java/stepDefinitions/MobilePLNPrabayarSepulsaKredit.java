@@ -89,7 +89,7 @@ public class MobilePLNPrabayarSepulsaKredit extends BaseStep {
         beranda.klikMenuHistory();
         history.sudahDiHistory();
         history.cekTransaksiSukses();
-        createScreenshots.captureScreenShots();
+        //createScreenshots.captureScreenShots();
     }
 
     @When("^deposit Sepulsa Kredit untuk beli token listrik kurang$")

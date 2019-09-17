@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.InputSepulsa;
+
+import java.util.List;
 
 public class BayarBPJS extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/ilb_edt_phone")
@@ -48,6 +51,15 @@ public class BayarBPJS extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"KEMBALI KE BERANDA\").instance(0))")
     protected AndroidElement hyperlinkBeranda;
 
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/bk_btn_lanjut")
+    protected List<AndroidElement> adaButtonLanjutBayar;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
+    protected List<AndroidElement> adaInformasiPembayaran;
+
+    @AndroidFindBy(xpath = "//android.widget.Toast[1]")
+    protected AndroidElement toastMessage;
+
     public BayarBPJS(AndroidDriver driver) {
         super(driver);
     }
@@ -57,6 +69,9 @@ public class BayarBPJS extends AbstractObjectScreen {
         driver.hideKeyboard();
     }
 
+    public void fieldNoBPJSKosong(){
+        fieldNoBPJS.clear();
+    }
     public void fieldHPKosong(){
         fieldPhoneBPJS.clear();
     }
@@ -124,7 +139,38 @@ public class BayarBPJS extends AbstractObjectScreen {
     }
 
     public void statusInvalidMuncul () {
-        kolomIDInvalid.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(kolomIDInvalid));
+        Assert.assertEquals(kolomIDInvalid.getText(), InputSepulsa.idPelangganSalah, "unknown error");
     }
 
+    public void tungguProsesPembayaran(){
+        try{
+            Thread.sleep(30000);
+        } catch (Exception e) {}
+    }
+
+    public void statusTagihanTidakMuncul(){
+        try {
+            Thread.sleep(2000);
+            Assert.assertEquals(0,adaInformasiPembayaran.size());
+        } catch (Exception e) {}
+    }
+
+    public void buttonBayarTidakMuncul(){
+        try {
+            Thread.sleep(2000);
+            Assert.assertEquals(0,adaButtonLanjutBayar.size());
+        } catch (Exception e) {}
+    }
+
+    public void nomorBPJSSalah(){
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(kolomIDInvalid));
+        Assert.assertEquals(kolomIDInvalid.getText(), InputSepulsa.noTidakTerdaftar, "unknown error");
+    }
+
+    public void nomorSudahDibayar(){
+        Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.bpjsSudahBayar));
+    }
 }

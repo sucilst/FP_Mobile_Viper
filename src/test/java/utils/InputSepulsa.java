@@ -38,9 +38,12 @@ public interface InputSepulsa {
     String bpjsFail = "0000001430071800";
     String bpjsOK = "0000001430071801";
     String bpjsPaid = "0000001430071802";
+    String bpjsShort = "000000143007180";
 
     // pesan error
-    String idPLNPrabayarSalah = "No ID Pelanggan yang Anda masukkan salah. Mohon cek dan masukkan ulang No ID Pelanggan Anda.";
+    String idPelangganSalah = "No ID Pelanggan yang Anda masukkan salah. Mohon cek dan masukkan ulang No ID Pelanggan Anda.";
     String generalError = "General Error";
-
+    String noTidakTerdaftar = "Nomor tidak terdaftar dalam database billing.";
+    String bpjsSudahBayar = "Tagihan sudah terbayar/ belum tersedia untuk bulan ini.";
+    String timeOut = "Sesi anda telah berakhir, mohon login kembali";
 }

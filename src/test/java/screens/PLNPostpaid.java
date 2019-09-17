@@ -105,7 +105,7 @@ public class PLNPostpaid extends AbstractObjectScreen {
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
         Assert.assertTrue(boxIDSalah.isDisplayed());
-        Assert.assertEquals(boxIDSalah.getText(), InputSepulsa.idPLNPrabayarSalah,"IDnya bener");
+        Assert.assertEquals(boxIDSalah.getText(), InputSepulsa.idPelangganSalah,"IDnya bener");
     }
 
     public void statusSudahBayarTampil(){
