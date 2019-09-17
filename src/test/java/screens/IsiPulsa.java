@@ -64,6 +64,30 @@ public class IsiPulsa extends AbstractObjectScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Virtual Account Semua Bank']")
     protected AndroidElement pembayaranPermata;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card']")
+    protected AndroidElement pembayaranCC;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_card_number")
+    protected AndroidElement fieldNoCC;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/sp_expired_year")
+    protected AndroidElement fieldTahunCC;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='2020']")
+    protected AndroidElement tahun2020;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_cvv")
+    protected AndroidElement fieldNoCVV;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    protected AndroidElement errorNotifCC;
+
+    //@AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    //protected AndroidElement midtransOkButton;
+
+    //@AndroidFindBy(id = "PaRes")
+    //protected AndroidElement midtransPass;
+
     @AndroidFindBy(uiAutomator = "UiScrollable(new UiSelector()).scrollIntoView(text(\"Bayar Sekarang\"))")
     protected AndroidElement tombolBayar;
 
@@ -75,6 +99,12 @@ public class IsiPulsa extends AbstractObjectScreen {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank Permata']")
     protected AndroidElement sesuaiPermata;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card']")
+    protected AndroidElement sesuaiCC;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Sepulsa Kredit']")
+    protected AndroidElement sesuaiSepulsaKredit;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='DONE']")
     protected AndroidElement doneButton;
@@ -157,6 +187,96 @@ public class IsiPulsa extends AbstractObjectScreen {
         pembayaranPermata.click();
     }
 
+    public void pilihPembayaranCC() {
+        pembayaranCC.click();
+    }
+
+    public void isiCreditCard() {
+        fieldNoCC.sendKeys("4811111111111114");
+        driver.hideKeyboard();
+        fieldTahunCC.click();
+        tahun2020.click();
+        fieldNoCVV.sendKeys("123");
+    }
+
+    public void isiMidtrans() {
+        try {
+            //midtransPass.click();
+            //midtransPass.sendKeys("112233");
+            //midtransOkButton.click();
+            Thread.sleep(6000);
+        } catch (Exception e) {}
+    }
+
+    public void isiCreditCardInvalid(String field) {
+        switch (field) {
+            case "1":
+                //No CVV kosong
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldTahunCC.click();
+                tahun2020.click();
+                tombolBayar.click();
+                pembayaranCC.isDisplayed();
+                break;
+            case "2":
+                //No CC kosong
+                fieldNoCC.sendKeys("123");
+                fieldTahunCC.click();
+                tahun2020.click();
+                tombolBayar.click();
+                pembayaranCC.isDisplayed();
+                break;
+            case "3":
+                //No CC invalid
+                fieldNoCC.sendKeys("4811");
+                fieldTahunCC.click();
+                tahun2020.click();
+                fieldNoCVV.sendKeys("123");
+                tombolBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+            case "4":
+                //No CVV invalid
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldTahunCC.click();
+                tahun2020.click();
+                fieldNoCVV.sendKeys("567");
+                tombolBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+            case "5":
+                //Tahun Expired Invalid
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldNoCVV.sendKeys("123");
+                tombolBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+        }
+    }
+
+    public void pilihPembayaranSisa(String pembayaran) {
+        switch (pembayaran) {
+            case "bca":
+                pembayaranBCA.click();
+                break;
+            case "mandiri":
+                pembayaranMandiri.click();
+                break;
+            case "permata":
+                pembayaranPermata.click();
+                break;
+        }
+    }
+
     public void klikTombolBayar() {
         tombolBayar.click();
     }
@@ -171,6 +291,35 @@ public class IsiPulsa extends AbstractObjectScreen {
 
     public void halamanPermata() {
         sesuaiPermata.isDisplayed();
+    }
+
+    public void halamanSisa(String pembayaran) {
+        switch (pembayaran) {
+            case "bca":
+                sesuaiBCA.isDisplayed();
+                break;
+            case "mandiri":
+                sesuaiMandiri.isDisplayed();
+                break;
+            case "permata":
+                sesuaiPermata.isDisplayed();
+                break;
+        }
+    }
+
+    public void halamanSepulsaKredit() {
+        sesuaiSepulsaKredit.isDisplayed();
+    }
+
+    public void halamanCC() {
+        try {
+            Thread.sleep(3000);
+            sesuaiCC.isDisplayed();
+        } catch (Exception e) {}
+    }
+
+    public void validateTidakAdaSK() {
+        pembayaranMandiri.isDisplayed();
     }
 
     public void clickDoneButton() {

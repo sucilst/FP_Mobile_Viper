@@ -15,8 +15,11 @@ public interface InputSepulsa {
     String wrongPassword = "";
     String noTara1 = "08112233445566";
     String passTara1 = "sepulsa123";
-    String noOpi = "085678900123";
-    String passOpi = "testersepulsa123";
+    String noTara2 = "085678900123";
+    String passTara2 = "testersepulsa123";
+    String noRaka = "081242504777";
+    String passRaka = "rakaganteng";
+
 
     // kodeListrikPrabayar
     String tokenOKFirst = "01428800700";
