@@ -7,9 +7,9 @@ public interface InputSepulsa {
     String registerPassword = "123456";
 
     // sudah terdaftar
-    String signinMail = "retnowijiastutik@gmail.com";
-    String signinPhone = "082113013109";
-    String signinPassword = "retno123";
+    String signinMail = "";//"retnowijiastutik@gmail.com";
+    String signinPhone = "081259104836";//"082113013109";
+    String signinPassword = "greenday89";
     String wrongMail = "retnowijik@gmail.com";
     String wrongPhone = "";
     String wrongPassword = "";

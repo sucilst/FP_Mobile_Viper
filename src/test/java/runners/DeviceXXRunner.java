@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@BPJSMandiri",
+        tags = "@BPJSBCA",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",
