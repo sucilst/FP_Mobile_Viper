@@ -13,6 +13,7 @@ public class BaseStep {
     PLNPostpaid plnPostpaid;
     MainPage mainPage;
     PopUpPage popUpPage;
+    SepulsaCredit sepulsaCredit;
 
     public BaseStep(){
         driver = ThreadLocalDriver.getTLDriver();
@@ -23,5 +24,6 @@ public class BaseStep {
         plnPostpaid = new PLNPostpaid(driver);
         mainPage = new MainPage(driver);
         popUpPage = new PopUpPage(driver);
+        sepulsaCredit = new SepulsaCredit(driver);
     }
 }

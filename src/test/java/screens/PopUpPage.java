@@ -16,8 +16,29 @@ public class PopUpPage extends AbstractObjectScreen {
     @AndroidFindBy(id = "android:id/alertTitle")
     protected AndroidElement popupGPSMessage;
 
-    @AndroidFindBy(id="android:id/message")
-    protected AndroidElement popupMessage;
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Kamu suka App Sepulsa?']")
+    protected AndroidElement popupRating;
+
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/btn_rate_yes")
+    protected AndroidElement buttonRating;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Waah! Kamu mau bantu rating App Sepulsa? Dijamin kurang dari satu menit aja kok.']")
+    protected AndroidElement popupGiveRating;
+
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/btn_rate_playstore_no")
+    protected AndroidElement buttonRateLater;
+
+    @AndroidFindBy(className = "android.widget.LinearLayout")
+    protected AndroidElement popUpThankYou;
+
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/btn_close")
+    protected AndroidElement buttonClose;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buat Auto Pay?']")
+    protected AndroidElement popupAutoPay;
+
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/btn_action_no")
+    protected AndroidElement buttonAutoPayNo;
 
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/btn_close")
     protected AndroidElement popupKamuSukaSepulsa;
@@ -34,7 +55,7 @@ public class PopUpPage extends AbstractObjectScreen {
 
     public void disableGPS() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
             if (popupActivateGPS.isDisplayed())
                 buttonCancelGPS.click();
         } catch (Exception e){}
@@ -48,11 +69,17 @@ public class PopUpPage extends AbstractObjectScreen {
         } catch (Exception e){}
     }
 
-    public void popUpTimeout() {
+    public void disablePopUp() {
         try {
             Thread.sleep(500);
-            if(popupMessage.isDisplayed())
-                wait();
+            if(popupRating.isDisplayed())
+                buttonRating.click();
+            if(popupGiveRating.isDisplayed())
+                buttonRateLater.click();
+            if(popUpThankYou.isDisplayed())
+                buttonClose.click();
+            if(popupAutoPay.isDisplayed())
+                buttonAutoPayNo.click();
         } catch (Exception e) {}
     }
 
