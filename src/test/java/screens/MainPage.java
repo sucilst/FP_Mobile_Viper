@@ -58,6 +58,12 @@ public class MainPage extends AbstractObjectScreen {
     @AndroidFindBy(xpath = "//android.widget.Toast[1]")
     protected AndroidElement toastMessage;
 
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/av_edt_code")
+    protected AndroidElement kolomOTP;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/av_btn_verifikasi")
+    protected AndroidElement buttonVerifikasi;
+
     public MainPage(AndroidDriver driver) {
         super(driver);
     }
@@ -104,6 +110,7 @@ public class MainPage extends AbstractObjectScreen {
     }
 
     public void setujuSyarat() {
+        if(!(checkboxRegister.getAttribute("checked").contains("true")))
         checkboxRegister.click();
     }
 
@@ -111,10 +118,13 @@ public class MainPage extends AbstractObjectScreen {
         buttonRegister.click();
     }
 
-    public void testToast() {
-
+    public void dataHarusDiisi() {
+        Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.adaKolomKosong));
     }
 
+    public void tombolRegisterDisabled(){
+        Assert.assertFalse(buttonRegister.isEnabled());
+    }
     public void sessionTimeOut(){
         Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.timeOut));
     }
@@ -124,4 +134,42 @@ public class MainPage extends AbstractObjectScreen {
     public void diHalamanUtama() {
         Assert.assertTrue((forgotPassword.isDisplayed()));
     }
+
+
+    // kolom kosong
+    public void kosongNamaRegister() {
+
+        fieldNameRegister.clear();
+    }
+
+    public void kosongEmailRegister() {
+
+        fieldEmailRegister.clear();
+    }
+
+    public void kosongHandphoneRegister() {
+
+        fieldHandphoneRegister.clear();
+    }
+
+    public void kosongPasswordRegister() {
+
+        fieldPasswordRegister.clear();
+    }
+
+    public void checkboxSyaratTidakDiklik(){
+        Assert.assertTrue(checkboxRegister.getAttribute("checked").contains("false"));
+    }
+
+    public void masukkanKodeOTP(){
+        Assert.assertTrue(kolomOTP.isDisplayed());
+        try{
+            Thread.sleep(40000);
+        } catch (Exception e) {}
+    }
+
+    public void submitOTP(){
+        buttonVerifikasi.click();
+    }
+
 }

@@ -25,7 +25,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user memasukkan email yang tidak terdaftar di kolom No. Handphone atau Email
     And user memasukkan password di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi "Email atau password salah"
+    Then akan muncul notifikasi bahwa input email atau password salah (Mobile)
 
   @signin
   Scenario: Sign In gagal (no handphone tidak terdaftar)
@@ -34,7 +34,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user memasukkan no handphone yang tidak terdaftar di kolom No. Handphone atau Email
     And user memasukkan password di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi "Email atau password salah"
+    Then akan muncul notifikasi bahwa input email atau password salah (Mobile)
 
   @signin
   Scenario: Sign In gagal (email terdaftar, password salah)
@@ -43,7 +43,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user memasukkan email yang terdaftar di kolom No. Handphone atau Email
     And user memasukkan password yang salah di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi "Email atau password salah"
+    Then akan muncul notifikasi bahwa input email atau password salah (Mobile)
 
   @signin
   Scenario: Sign In gagal (no handphone terdaftar, password salah)
@@ -52,7 +52,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user memasukkan no handphone yang terdaftar di kolom No. Handphone atau Email
     And user memasukkan password yang salah di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi "Email atau password salah"
+    Then akan muncul notifikasi bahwa input email atau password salah (Mobile)
 
   @signin
   Scenario: Sign In gagal (kolom email atau no handphone kosong, kolom password terisi)
@@ -61,7 +61,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user mengosongkan kolom No. Handphone atau Email
     And user memasukkan password di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi untuk mengisi semua kolom
+    Then akan muncul notifikasi untuk mengisi semua kolom (Sign In Mobile)
 
   @signin
   Scenario: Sign In gagal (kolom email atau no handphone terisi, kolom password kosong)
@@ -70,7 +70,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user mengisi kolom No. Handphone atau Email
     And user mengosongkan kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi untuk mengisi semua kolom
+    Then akan muncul notifikasi untuk mengisi semua kolom (Sign In Mobile)
 
   @signin
   Scenario: Sign In gagal (kolom email atau no handphone kosong, kolom password kosong)
@@ -79,4 +79,4 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user mengosongkan kolom No. Handphone atau Email
     And user mengosongkan kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi untuk mengisi semua kolom
+    Then akan muncul notifikasi untuk mengisi semua kolom (Sign In Mobile)
