@@ -82,11 +82,11 @@ public class IsiPulsa extends AbstractObjectScreen {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
     protected AndroidElement errorNotifCC;
 
-    //@AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
-    //protected AndroidElement midtransOkButton;
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    protected AndroidElement midtransOkButton;
 
-    //@AndroidFindBy(id = "PaRes")
-    //protected AndroidElement midtransPass;
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='112233']")
+    protected AndroidElement midtransPass;
 
     @AndroidFindBy(uiAutomator = "UiScrollable(new UiSelector()).scrollIntoView(text(\"Bayar Sekarang\"))")
     protected AndroidElement tombolBayar;
@@ -201,9 +201,10 @@ public class IsiPulsa extends AbstractObjectScreen {
 
     public void isiMidtrans() {
         try {
-            //midtransPass.click();
-            //midtransPass.sendKeys("112233");
-            //midtransOkButton.click();
+            Thread.sleep(3000);
+            midtransPass.click();
+            midtransPass.sendKeys("112233");
+            midtransOkButton.click();
             Thread.sleep(6000);
         } catch (Exception e) {}
     }
