@@ -25,7 +25,7 @@ Feature: Sign in di aplikasi mobile Sepulsa
     And user memasukkan email yang tidak terdaftar di kolom No. Handphone atau Email
     And user memasukkan password di kolom password
     And user melakukan tap pada tombol Sign In
-    Then akan muncul notifikasi bahwa input email atau password salah (Mobile)
+    Then user akan dialihkan ke halaman Masukkan Kode OTP
 
   @signin
   Scenario: Sign In gagal (no handphone tidak terdaftar)

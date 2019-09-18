@@ -63,6 +63,22 @@ public class PLNPostpaid extends AbstractObjectScreen {
     @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
     protected List<AndroidElement> adaInformasiTagihan;
 
+    // buat sepulsa credit
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rp0\")")
+    protected List<AndroidElement> sisaBayarSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Sepulsa Kredit\"))")
+    protected AndroidElement titleSepulsaCredit;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/img_sepulsa_kredit")
+    protected AndroidElement ikonBayarSepulsaKredit;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Sepulsa Kredit\")")
+    protected List<AndroidElement> adaSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
+    protected List<AndroidElement> adaButtonBayar;
+
     public PLNPostpaid(AndroidDriver driver) {
         super(driver);
     }
@@ -179,5 +195,44 @@ public class PLNPostpaid extends AbstractObjectScreen {
 
     public void statusTagihanTidakTampil() {
         Assert.assertEquals(0,adaInformasiTagihan.size());
+    }
+
+    // sepulsa kredit
+    public void saldoSepulsaCreditCukup() {
+        Assert.assertFalse((sisaBayarSepulsaCredit.size())==0);
+    }
+
+    public void saldoSepulsaCreditKurang() {
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, sisaBayarSepulsaCredit.size());
+        } catch (Exception e) {}
+    }
+
+    public void pilihBayarSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleSepulsaCredit));
+    }
+
+    public void diHalamanSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(ikonBayarSepulsaKredit));
+    }
+
+    public void sepulsaCreditTidakTersedia(){
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaSepulsaCredit.size());
+        } catch (Exception e) {}
+
+    }
+
+    public void bayarSepulsaCreditTidakTersedia() {
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaButtonBayar.size());
+        } catch (Exception e) {
+        }
     }
 }
