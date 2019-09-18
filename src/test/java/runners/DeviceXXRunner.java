@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@PLNPostpaidBCA",
+        tags = "@PLNPostpaidMandiri",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",
