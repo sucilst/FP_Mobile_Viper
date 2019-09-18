@@ -22,8 +22,8 @@ public class MobilePulsaSemuaBank extends BaseStep {
     public void user_telah_login_di_aplikasi_mobile_Sepulsa_pulsa_Permata() throws Throwable {
         driver.resetApp();
         mainPage.klikMulai();
-        mainPage.isiIdSignIn(InputSepulsa.noOpi);
-        mainPage.isiPasswordSignIn(InputSepulsa.passOpi);
+        mainPage.isiIdSignIn(InputSepulsa.noTara1);
+        mainPage.isiPasswordSignIn(InputSepulsa.passTara1);
         mainPage.submitSignIn();
     }
 
