@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.InputSepulsa;
+
+import java.util.List;
 
 public class PLNPostpaid extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Pascabayar\")")
@@ -54,6 +57,11 @@ public class PLNPostpaid extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/txtPaymentGreeting")
     protected AndroidElement titleDetailBayar;
 
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"KEMBALI KE BERANDA\").instance(0))")
+    protected AndroidElement hyperlinkBeranda;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
+    protected List<AndroidElement> adaInformasiTagihan;
 
     public PLNPostpaid(AndroidDriver driver) {
         super(driver);
@@ -80,6 +88,14 @@ public class PLNPostpaid extends AbstractObjectScreen {
         Assert.assertTrue(boxInformasiTagihan.isDisplayed());
     }
 
+    public void kolomIDKosong(){
+        fieldIDPLN.clear();
+    }
+
+    public void kolomHandphoneKosong(){
+        fieldPhonePLN.clear();
+    }
+
     public void totalTagihanAwalMuncul() {
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(boxTagihanListrik));
@@ -89,6 +105,14 @@ public class PLNPostpaid extends AbstractObjectScreen {
         WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
         Assert.assertTrue(boxIDSalah.isDisplayed());
+        Assert.assertEquals(boxIDSalah.getText(), InputSepulsa.idPelangganSalah,"IDnya bener");
+    }
+
+    public void statusSudahBayarTampil(){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOf(boxIDSalah));
+        Assert.assertTrue(boxIDSalah.isDisplayed());
+        Assert.assertEquals(boxIDSalah.getText(),InputSepulsa.generalError,"Unknown error");
     }
 
     public void keHalamanPembayaran(){
@@ -141,5 +165,19 @@ public class PLNPostpaid extends AbstractObjectScreen {
         wait.until(ExpectedConditions.visibilityOf(titleThankYou));
         wait.until(ExpectedConditions.visibilityOf(titleDetailBayar));
         Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Virtual Account Semua Bank","Salah Metode");
+    }
+
+    public void tungguProsesPembayaran(){
+        try{
+            Thread.sleep(30000);
+        } catch (Exception e) {}
+    }
+
+    public void keHalamanBeranda(){
+        hyperlinkBeranda.click();
+    }
+
+    public void statusTagihanTidakTampil() {
+        Assert.assertEquals(0,adaInformasiTagihan.size());
     }
 }

@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.InputSepulsa;
+
+import java.util.List;
 
 public class BayarBPJS extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/ilb_edt_phone")
@@ -48,6 +51,31 @@ public class BayarBPJS extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"KEMBALI KE BERANDA\").instance(0))")
     protected AndroidElement hyperlinkBeranda;
 
+    @AndroidFindBy(id="com.sepulsa.androiddev:id/bk_btn_lanjut")
+    protected List<AndroidElement> adaButtonLanjutBayar;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
+    protected List<AndroidElement> adaInformasiPembayaran;
+
+    @AndroidFindBy(xpath = "//android.widget.Toast[1]")
+    protected AndroidElement toastMessage;
+
+    // buat sepulsa credit
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rp0\")")
+    protected List<AndroidElement> sisaBayarSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Sepulsa Kredit\"))")
+    protected AndroidElement titleSepulsaCredit;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/img_sepulsa_kredit")
+    protected AndroidElement ikonBayarSepulsaKredit;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Sepulsa Kredit\")")
+    protected List<AndroidElement> adaSepulsaCredit;
+
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Bayar Sekarang\").instance(0))")
+    protected List<AndroidElement> adaButtonBayar;
+
     public BayarBPJS(AndroidDriver driver) {
         super(driver);
     }
@@ -57,6 +85,9 @@ public class BayarBPJS extends AbstractObjectScreen {
         driver.hideKeyboard();
     }
 
+    public void fieldNoBPJSKosong(){
+        fieldNoBPJS.clear();
+    }
     public void fieldHPKosong(){
         fieldPhoneBPJS.clear();
     }
@@ -124,7 +155,78 @@ public class BayarBPJS extends AbstractObjectScreen {
     }
 
     public void statusInvalidMuncul () {
-        kolomIDInvalid.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(kolomIDInvalid));
+        Assert.assertEquals(kolomIDInvalid.getText(), InputSepulsa.idPelangganSalah, "unknown error");
+    }
+
+    public void tungguProsesPembayaran(){
+        try{
+            Thread.sleep(30000);
+        } catch (Exception e) {}
+    }
+
+    public void statusTagihanTidakMuncul(){
+        try {
+            Thread.sleep(2000);
+            Assert.assertEquals(0,adaInformasiPembayaran.size());
+        } catch (Exception e) {}
+    }
+
+    public void buttonBayarTidakMuncul(){
+        try {
+            Thread.sleep(2000);
+            Assert.assertEquals(0,adaButtonLanjutBayar.size());
+        } catch (Exception e) {}
+    }
+
+    public void nomorBPJSSalah(){
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(kolomIDInvalid));
+        Assert.assertEquals(kolomIDInvalid.getText(), InputSepulsa.noTidakTerdaftar, "unknown error");
+    }
+
+    public void nomorSudahDibayar(){
+        Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.bpjsSudahBayar));
+    }
+
+    // sepulsa credit
+    public void saldoSepulsaCreditCukup() {
+        Assert.assertFalse((sisaBayarSepulsaCredit.size())==0);
+    }
+
+    public void saldoSepulsaCreditKurang() {
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, sisaBayarSepulsaCredit.size());
+        } catch (Exception e) {}
+    }
+
+    public void pilihBayarSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleSepulsaCredit));
+    }
+
+    public void diHalamanSepulsaCredit() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(titleThankYou));
+        wait.until(ExpectedConditions.visibilityOf(ikonBayarSepulsaKredit));
+    }
+
+    public void sepulsaCreditTidakTersedia(){
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaSepulsaCredit.size());
+        } catch (Exception e) {}
+
+    }
+
+    public void bayarSepulsaCreditTidakTersedia() {
+        try {
+            Thread.sleep(5000);
+            Assert.assertEquals(0, adaButtonBayar.size());
+        } catch (Exception e) {
+        }
     }
 
 }

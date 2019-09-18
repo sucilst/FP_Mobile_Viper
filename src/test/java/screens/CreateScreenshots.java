@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class CreateScreenshots extends AbstractObjectScreen {
 
@@ -22,10 +23,11 @@ public class CreateScreenshots extends AbstractObjectScreen {
 
     public void captureScreenShots() throws IOException {
         // add folder name to save the screenshots
-        String folder_name = "screenshots";
+        String folder_name = "screenshots/postpaidmandiri";
         File f=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         //Date format fot screenshot file name
-        DateFormat df = new  SimpleDateFormat("dd-MM-yyyy__hh_mm_ssaa");
+        DateFormat df = new  SimpleDateFormat("dd-MM-yyyy__HH_mm_ss");
+        df.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
         //create dir with given folder name
         new File(folder_name).mkdir();
         //Setting file name

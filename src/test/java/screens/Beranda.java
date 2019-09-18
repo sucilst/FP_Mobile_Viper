@@ -46,7 +46,7 @@ public class Beranda extends AbstractObjectScreen {
 
     public void sudahDiBeranda(){
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             Assert.assertTrue(textBoxMulaiTransaksi.isDisplayed());
             //Assert.assertEquals(textBoxMulaiTransaksi.getText(),"Auto Pay","Salah Tab");
         } catch (Exception e) {}

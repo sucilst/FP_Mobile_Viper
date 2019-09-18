@@ -1,15 +1,15 @@
 package utils;
 
 public interface InputSepulsa {
-    String registerName = "hellolina";
+    String registerName = "Apulina Priska";
     String registerMail = "apulina.priska@gmail.com";
     String registerPhone = "08112257721";
     String registerPassword = "123456";
 
     // sudah terdaftar
     String signinMail = "retnowijiastutik@gmail.com";
-    String signinPhone = "082113013109";
-    String signinPassword = "retno123";
+    String signinPhone = "081259104836";//"082113013109";
+    String signinPassword = "greenday89";
     String wrongMail = "retnowijik@gmail.com";
     String wrongPhone = "";
     String wrongPassword = "";
@@ -41,5 +41,25 @@ public interface InputSepulsa {
     String bpjsFail = "0000001430071800";
     String bpjsOK = "0000001430071801";
     String bpjsPaid = "0000001430071802";
+    String bpjsShort = "000000143007180";
+    String bpjsOKTemp = "0000001430071804";
 
+    // pesan error
+    String idPelangganSalah = "No ID Pelanggan yang Anda masukkan salah. Mohon cek dan masukkan ulang No ID Pelanggan Anda.";
+    String generalError = "General Error.";
+    String noTidakTerdaftar = "Nomor tidak terdaftar dalam database billing.";
+    String bpjsSudahBayar = "Tagihan sudah terbayar/ belum tersedia untuk bulan ini.";
+    String timeOut = "Sesi anda telah berakhir, mohon login kembali";
+    String adaKolomKosong = "All data must be filled";
+    String formatTidakValid = "Email/ No HP tidak valid.";
+    String invalidInput = "Invalid input.";
+    String inputHPTidakValid = "Nomor HP tidak valid.";
+    String sudahPernahRegister = "Email sudah terdaftar. Silahkan login.";
+    String emailSudahTerdaftar = "Email sudah terdaftar";
+
+    // credit card
+    String creditCardNumber = "4811 1111 1111 1114";
+    String expMonth = "01";
+    String expYear = "2020";
+    String cvvNumber = "123";
 }

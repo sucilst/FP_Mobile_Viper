@@ -15,6 +15,7 @@ public class BaseStep {
     PopUpPage popUpPage;
     SepulsaCredit sepulsaCredit;
     CreateScreenshots createScreenshots;
+    History history;
 
     public BaseStep(){
         driver = ThreadLocalDriver.getTLDriver();
@@ -27,5 +28,6 @@ public class BaseStep {
         popUpPage = new PopUpPage(driver);
         sepulsaCredit = new SepulsaCredit(driver);
         createScreenshots = new CreateScreenshots(driver);
+        history = new History(driver);
     }
 }

@@ -3,6 +3,8 @@ package screens;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.testng.Assert;
+import utils.InputSepulsa;
 
 public class PopUpPage extends AbstractObjectScreen {
 
@@ -35,7 +37,7 @@ public class PopUpPage extends AbstractObjectScreen {
     protected AndroidElement buttonClose;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buat Auto Pay?']")
-    protected AndroidElement popupAutoPay;
+    protected AndroidElement popAutoPay;
 
     @AndroidFindBy(id="com.sepulsa.androiddev:id/btn_action_no")
     protected AndroidElement buttonAutoPayNo;
@@ -48,6 +50,12 @@ public class PopUpPage extends AbstractObjectScreen {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buat Auto Pay?']")
     protected AndroidElement validatePopUpAutoPay;
+
+    @AndroidFindBy(id = "android:id/alertTitle")
+    protected AndroidElement popupInvalidInput;
+
+    @AndroidFindBy(id = "android:id/message")
+    protected AndroidElement alertMessage;
 
     public PopUpPage(AndroidDriver driver) {
         super(driver);
@@ -63,7 +71,7 @@ public class PopUpPage extends AbstractObjectScreen {
 
     public void disableGPSSettings() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
             if (popupGPSMessage.isDisplayed())
                 buttonCancelGPS.click();
         } catch (Exception e){}
@@ -78,7 +86,7 @@ public class PopUpPage extends AbstractObjectScreen {
                 buttonRateLater.click();
             if(popUpThankYou.isDisplayed())
                 buttonClose.click();
-            if(popupAutoPay.isDisplayed())
+            if(popAutoPay.isDisplayed())
                 buttonAutoPayNo.click();
         } catch (Exception e) {}
     }
@@ -93,5 +101,28 @@ public class PopUpPage extends AbstractObjectScreen {
         if(popupKamuSukaSepulsa.isDisplayed()) {
             popupKamuSukaSepulsa.click();
         }
+    }
+
+    // notifikasi di Register
+
+    public void noHandphoneInvalid(){
+        if(popupInvalidInput.isDisplayed()) {
+            Assert.assertEquals(popupInvalidInput.getText(), InputSepulsa.invalidInput,InputSepulsa.generalError);
+        }
+        Assert.assertEquals(alertMessage.getText(),InputSepulsa.inputHPTidakValid);
+    }
+
+    public void emailInvalid(){
+        if(popupInvalidInput.isDisplayed()) {
+            Assert.assertEquals(popupInvalidInput.getText(), InputSepulsa.invalidInput,InputSepulsa.generalError);
+        }
+        Assert.assertEquals(alertMessage.getText(),InputSepulsa.formatTidakValid);
+    }
+
+    public void sudahTerdaftar(){
+        if(popupInvalidInput.isDisplayed()) {
+            Assert.assertEquals(popupInvalidInput.getText(), InputSepulsa.emailSudahTerdaftar,InputSepulsa.generalError);
+        }
+        Assert.assertEquals(alertMessage.getText(),InputSepulsa.sudahPernahRegister);
     }
 }

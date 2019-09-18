@@ -25,137 +25,176 @@ public class MobileBPJSSemuaBank extends BaseStep {
         mainPage.isiIdSignIn(InputSepulsa.signinPhone);
         mainPage.isiPasswordSignIn(InputSepulsa.signinPassword);
         mainPage.submitSignIn();
+        createScreenshots.captureScreenShots();
     }
 
     @Given("^user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar BPJS dengan metode VA Semua Bank$")
     public void user_berada_di_halaman_beranda_aplikasi_mobile_Sepulsa_untuk_bayar_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         beranda.sudahDiBeranda();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap tombol Bayar BPJS Kesehatan untuk untuk bayar BPJS dengan metode VA Semua Bank$")
     public void user_tap_tombol_Bayar_BPJS_Kesehatan_untuk_untuk_bayar_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         beranda.menuBPJS();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan nomor handphone untuk syarat bayar BPJS dengan metode VA Semua Bank$")
     public void user_memasukkan_nomor_handphone_untuk_syarat_bayar_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.fieldHPKosong();
         bayarBPJS.isiNoHP(InputSepulsa.registerPhone);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan no BPJS Kesehatan yang akan dibayar dengan metode VA Semua Bank$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_akan_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsOK);
+        createScreenshots.captureScreenShots();
     }
 
-    @When("^informasi tagihan BPJS  yang akan dibayar dengan metode VA Semua Bank muncul di layar$")
+    @When("^informasi tagihan BPJS yang akan dibayar dengan metode VA Semua Bank muncul di layar$")
     public void informasi_tagihan_BPJS_yang_akan_dibayar_dengan_metode_VA_Semua_Bank_muncul_di_layar() throws Throwable {
         bayarBPJS.cekStatusPeserta();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap tombol Bayar Tagihan untuk lanjut pembayaran BPJS dengan metode VA Semua Bank$")
     public void user_tap_tombol_Bayar_Tagihan_untuk_lanjut_pembayaran_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.bayarSekarang();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih metode pembayaran Virtual Account Semua Bank untuk membayar tagihan BPJS$")
     public void user_memilih_metode_pembayaran_Virtual_Account_Semua_Bank_untuk_membayar_tagihan_BPJS() throws Throwable {
         bayarBPJS.pilihanMetodeBayar();
         bayarBPJS.pilihBayarSemuaBank();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap pada tombol Bayar untuk membayar tagihan BPJS dengan metode VA Semua Bank$")
     public void user_tap_pada_tombol_Bayar_untuk_membayar_tagihan_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.klikBayar();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user masuk ke halaman Informasi Pembayaran BPJS yang harus dibayar dengan metode VA Semua Bank$")
     public void user_masuk_ke_halaman_Informasi_Pembayaran_BPJS_yang_harus_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
         popUpPage.disablePopUp();
         bayarBPJS.diHalamanTagihanSemuaBank();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user membayar lunas tagihan BPJS melalui Virtual Account Semua Bank$")
     public void user_membayar_lunas_tagihan_BPJS_melalui_Virtual_Account_Semua_Bank() throws Throwable {
-
+        bayarBPJS.tungguProsesPembayaran();
+        createScreenshots.captureScreenShots();
     }
 
-    @Then("^status pembayaran BPJS Kesehatan dengan Virtual Account Semua Bank pada halaman History berubah menjadi \"([^\"]*)\"$")
-    public void status_pembayaran_BPJS_Kesehatan_dengan_Virtual_Account_Semua_Bank_pada_halaman_History_berubah_menjadi(String arg1) throws Throwable {
+    @Then("^transaksi bayar tagihan BPJS Kesehatan dengan metode VA Semua Bank pada halaman History muncul di daftar Transaksi Sukses$")
+    public void transaksi_bayar_tagihan_BPJS_Kesehatan_dengan_metode_VA_Semua_Bank_pada_halaman_History_muncul_di_daftar_Transaksi_Sukses() throws Throwable {
         bayarBPJS.keHalamanBeranda();
+        beranda.sudahDiBeranda();
         beranda.klikMenuHistory();
+        history.sudahDiHistory();
+        history.cekTransaksiSukses();
+        createScreenshots.captureScreenShots();
     }
 
-    @Then("^user dapat melihat bukti pembayaran BPJS dengan metode Virtual Account Semua Bank$")
-    public void user_dapat_melihat_bukti_pembayaran_BPJS_dengan_metode_Virtual_Account_Semua_Bank() throws Throwable {
-
-    }
 
     @When("^user belum membayar tagihan BPJS dengan metode VA Semua Bank hingga lebih dari batas waktu pembayaran$")
     public void user_belum_membayar_tagihan_BPJS_dengan_metode_VA_Semua_Bank_hingga_lebih_dari_batas_waktu_pembayaran() throws Throwable {
-        bayarBPJS.keHalamanBeranda();
-        beranda.klikMenuHistory();
+        bayarBPJS.tungguProsesPembayaran();
+        createScreenshots.captureScreenShots();
     }
 
-    @Then("^transaksi BPJS Kesehatan dengan Virtual Account Semua Bank di aplikasi mobile Sepulsa statusnya berubah jadi EXPIRED$")
-    public void transaksi_BPJS_Kesehatan_dengan_Virtual_Account_Semua_Bank_di_aplikasi_mobile_Sepulsa_statusnya_berubah_jadi_EXPIRED() throws Throwable {
-
+    @Then("^transaksi bayar tagihan BPJS Kesehatan dengan metode VA Semua Bank pada halaman History tidak muncul di daftar Transaksi Sukses$")
+    public void transaksi_bayar_tagihan_BPJS_Kesehatan_dengan_metode_VA_Semua_Bank_pada_halaman_History_tidak_muncul_di_daftar_Transaksi_Sukses() throws Throwable {
+        bayarBPJS.keHalamanBeranda();
+        beranda.sudahDiBeranda();
+        beranda.klikMenuHistory();
+        history.sudahDiHistory();
+        history.cekTransaksiSukses();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan no BPJS Kesehatan yang tidak valid untuk dibayar dengan metode VA Semua Bank$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_tidak_valid_untuk_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsFail);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^layar akan menunjukkan bahwa nomor BPJS tidak terdaftar dan tidak dapat dibayar dengan metode VA Semua Bank$")
     public void layar_akan_menunjukkan_bahwa_nomor_BPJS_tidak_terdaftar_dan_tidak_dapat_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
-        bayarBPJS.statusInvalidMuncul();
+        bayarBPJS.nomorBPJSSalah();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan no BPJS Kesehatan yang sudah dibayar untuk dibayar dengan metode VA Semua Bank$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_sudah_dibayar_untuk_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
-        bayarBPJS.isiNoBPJS(InputSepulsa.bpjsPaid);
+        bayarBPJS.isiNoBPJS(InputSepulsa.bpjsOK);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^informasi tagihan BPJS yang harus dibayar dengan metode VA Semua Bank muncul di layar$")
     public void informasi_tagihan_BPJS_yang_harus_dibayar_dengan_metode_VA_Semua_Bank_muncul_di_layar() throws Throwable {
         bayarBPJS.cekStatusPeserta();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^layar akan menunjukkan bahwa tagihan BPJS sudah terbayar sehingga tidak dapat dibayar dengan metode VA Semua Bank$")
     public void layar_akan_menunjukkan_bahwa_tagihan_BPJS_sudah_terbayar_sehingga_tidak_dapat_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
-
+        bayarBPJS.nomorSudahDibayar();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user mengosongkan nomor handphone yang diperlukan untuk syarat bayar BPJS dengan metode VA Semua Bank$")
     public void user_mengosongkan_nomor_handphone_yang_diperlukan_untuk_syarat_bayar_BPJS_dengan_metode_VA_Semua_Bank() throws Throwable {
         bayarBPJS.fieldHPKosong();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^user akan otomatis sign out dari aplikasi Sepulsa \\(BPJS VA Semua Bank\\)$")
     public void user_akan_otomatis_sign_out_dari_aplikasi_Sepulsa_BPJS_VA_Semua_Bank() throws Throwable {
-        mainPage.diHalamanUtama();
-        // masukin toast boxnya
+        mainPage.sessionTimeOut();
+        createScreenshots.captureScreenShots();
+
     }
 
     @Then("^user diarahkan ke halaman utama aplikasi Sepulsa \\(BPJS VA Semua Bank\\)$")
     public void user_diarahkan_ke_halaman_utama_aplikasi_Sepulsa_BPJS_VA_Semua_Bank() throws Throwable {
         mainPage.diHalamanUtama();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user mengosongkan kolom BPJS Kesehatan yang akan dibayar dengan metode VA Semua Bank$")
     public void user_mengosongkan_kolom_BPJS_Kesehatan_yang_akan_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
-
+        bayarBPJS.fieldNoBPJSKosong();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^informasi tagihan yang harus dibayar dengan BPJS Kesehatan tidak akan muncul$")
     public void informasi_tagihan_yang_harus_dibayar_dengan_BPJS_Kesehatan_tidak_akan_muncul() throws Throwable {
-
+        bayarBPJS.statusTagihanTidakMuncul();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^tombol Bayar Tagihan untuk melanjutkan pembayaran BPJS dengan metode VA Semua Bank tidak muncul$")
     public void tombol_Bayar_Tagihan_untuk_melanjutkan_pembayaran_BPJS_dengan_metode_VA_Semua_Bank_tidak_muncul() throws Throwable {
+        bayarBPJS.buttonBayarTidakMuncul();
+        createScreenshots.captureScreenShots();
+    }
 
+    @When("^user memasukkan no BPJS Kesehatan yang digitnya kurang untuk dibayar dengan metode VA Semua Bank$")
+    public void user_memasukkan_no_BPJS_Kesehatan_yang_digitnya_kurang_untuk_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
+        bayarBPJS.isiNoBPJS(InputSepulsa.bpjsShort);
+        createScreenshots.captureScreenShots();
+    }
+
+    @Then("^layar akan menunjukkan bahwa nomor BPJS salah dan tidak dapat dibayar dengan metode VA Semua Bank$")
+    public void layar_akan_menunjukkan_bahwa_nomor_BPJS_salah_dan_tidak_dapat_dibayar_dengan_metode_VA_Semua_Bank() throws Throwable {
+        bayarBPJS.nomorBPJSSalah();
+        createScreenshots.captureScreenShots();
     }
 
     @After
