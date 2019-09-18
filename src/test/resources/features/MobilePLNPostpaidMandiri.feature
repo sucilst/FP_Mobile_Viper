@@ -62,7 +62,7 @@ And user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar tagihan P
 When user tap tombol Listrik PLN untuk bayar tagihan PLN dengan Mandiri VA
 And user tap pada pilihan Pascabayar untuk bayar tagihan PLN dengan Mandiri VA
 And user mengosongkan kolom PLN / ID Pelanggan untuk bayar tagihan listrik dengan Mandiri VA
-And user mengetik nomor handphone penerima token listrik yang akan dibayar dengan Mandiri Virtual Account
+And user mengetik nomor handphone pemilik tagihan listrik yang akan dibayar dengan Mandiri VA
 Then keterangan pelanggan yang akan membayar tagihan listrik dengan metode bayar Mandiri Virtual Account tidak muncul
 
 @PLNPostpaidMandiri
