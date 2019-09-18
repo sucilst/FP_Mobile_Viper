@@ -71,8 +71,8 @@
      And user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar tagihan PLN dengan BCA VA
      When user tap tombol Listrik PLN untuk bayar tagihan PLN dengan BCA VA
      And user tap pada pilihan Pascabayar untuk bayar tagihan PLN dengan BCA VA
-     And user mengetik nomor meter PLN / ID Pelanggan untuk bayar tagihan PLN dengan BCA VA
      And user mengosongkan kolom handphone pemilik tagihan listrik yang akan dibayar dengan BCA VA
+     And user mengetik nomor meter PLN / ID Pelanggan untuk bayar tagihan PLN dengan BCA VA
      Then keterangan pelanggan yang akan membayar tagihan listrik dengan metode bayar BCA Virtual Account tidak muncul
 
    @PLNPostpaidBCA

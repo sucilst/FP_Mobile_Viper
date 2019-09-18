@@ -21,8 +21,8 @@ public class MobilePLNPostpaidBCA extends BaseStep {
         driver.resetApp();
         popUpPage.disableGPS();
         mainPage.klikMulai();
-        mainPage.isiIdSignIn(InputSepulsa.signinPhone);
-        mainPage.isiPasswordSignIn(InputSepulsa.signinPassword);
+        mainPage.isiIdSignIn(InputSepulsa.registerPhone);
+        mainPage.isiPasswordSignIn(InputSepulsa.registerPassword);
         mainPage.submitSignIn();
         createScreenshots.captureScreenShots();
     }
@@ -114,7 +114,7 @@ public class MobilePLNPostpaidBCA extends BaseStep {
 
     @Then("^transaksi PLN Pascabayar dengan metode bayar BCA VA pada halaman History tidak ditemukan di daftar Transaksi Sukses$")
     public void transaksi_PLN_Pascabayar_dengan_metode_bayar_BCA_VA_pada_halaman_History_tidak_ditemukan_di_daftar_Transaksi_Sukses() throws Throwable {
-        plnPrepaid.keHalamanBeranda();
+        plnPostpaid.keHalamanBeranda();
         beranda.sudahDiBeranda();
         beranda.klikMenuHistory();
         history.sudahDiHistory();
