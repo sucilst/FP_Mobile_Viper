@@ -42,6 +42,9 @@ public class PLNPostpaid extends AbstractObjectScreen {
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"BCA Virtual Account\"))")
     protected AndroidElement titleBayarBCA;
 
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Credit Card\"))")
+    protected AndroidElement titleCC;
+
     @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Mandiri Virtual Account\"))")
     protected AndroidElement titleBayarMandiri;
 
@@ -62,6 +65,30 @@ public class PLNPostpaid extends AbstractObjectScreen {
 
     @FindBy(xpath = "//android.widget.TextView[@text='Informasi Tagihan']")
     protected List<AndroidElement> adaInformasiTagihan;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_card_number")
+    protected AndroidElement fieldNoCC;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/sp_expired_year")
+    protected AndroidElement fieldTahunCC;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text='2020']")
+    protected AndroidElement tahun2020;
+
+    @AndroidFindBy(id = "com.sepulsa.androiddev:id/et_cvv")
+    protected AndroidElement fieldNoCVV;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    protected AndroidElement errorNotifCC;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='DONE']")
+    protected AndroidElement doneButton;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    protected AndroidElement midtransOkButton;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='112233']")
+    protected AndroidElement midtransPass;
 
     public PLNPostpaid(AndroidDriver driver) {
         super(driver);
@@ -142,6 +169,10 @@ public class PLNPostpaid extends AbstractObjectScreen {
         titleBayarSemuaBank.click();
     }
 
+    public void pilihBayarCC() {
+        titleCC.click();
+    }
+
     public void klikBayar(){
         buttonBayar.click();
     }
@@ -167,6 +198,10 @@ public class PLNPostpaid extends AbstractObjectScreen {
         Assert.assertEquals(titleDetailBayar.getText(),"Informasi Pembayaran Virtual Account Semua Bank","Salah Metode");
     }
 
+    public void diHalamanTagihanCC() {
+        titleCC.isDisplayed();
+    }
+
     public void tungguProsesPembayaran(){
         try{
             Thread.sleep(30000);
@@ -179,5 +214,82 @@ public class PLNPostpaid extends AbstractObjectScreen {
 
     public void statusTagihanTidakTampil() {
         Assert.assertEquals(0,adaInformasiTagihan.size());
+    }
+
+    public void isiCreditCard() {
+        fieldNoCC.sendKeys("4811111111111114");
+        driver.hideKeyboard();
+        fieldTahunCC.click();
+        tahun2020.click();
+        fieldNoCVV.sendKeys("123");
+    }
+
+    public void isiMidtrans() {
+        try {
+            Thread.sleep(3000);
+            midtransPass.click();
+            midtransPass.sendKeys("112233");
+            midtransOkButton.click();
+            Thread.sleep(6000);
+        } catch (Exception e) {}
+    }
+
+    public void isiCreditCardInvalid(String detail) {
+        switch (detail) {
+            case "1":
+                //No CVV kosong
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldTahunCC.click();
+                tahun2020.click();
+                buttonBayar.click();
+                titleCC.isDisplayed();
+                break;
+            case "2":
+                //No CC kosong
+                fieldNoCC.sendKeys("123");
+                fieldTahunCC.click();
+                tahun2020.click();
+                buttonBayar.click();
+                titleCC.isDisplayed();
+                break;
+            case "3":
+                //No CC invalid
+                fieldNoCC.sendKeys("4811");
+                fieldTahunCC.click();
+                tahun2020.click();
+                fieldNoCVV.sendKeys("123");
+                buttonBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+            case "4":
+                //No CVV invalid
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldTahunCC.click();
+                tahun2020.click();
+                fieldNoCVV.sendKeys("567");
+                buttonBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+            case "5":
+                //Tahun Expired Invalid
+                fieldNoCC.sendKeys("4811111111111114");
+                fieldNoCVV.sendKeys("123");
+                buttonBayar.click();
+                try {
+                    Thread.sleep(2000);
+                    errorNotifCC.click();
+                } catch (Exception e) {}
+                break;
+        }
+    }
+
+    public void klikDoneButton() {
+        doneButton.click();
     }
 }

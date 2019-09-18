@@ -17,9 +17,8 @@ public interface InputSepulsa {
     String passTara1 = "sepulsa123";
     String noTara2 = "085678900123";
     String passTara2 = "testersepulsa123";
-    String noRaka = "081242504777";
-    String passRaka = "rakaganteng";
-
+    String noRaka = "081259104836";
+    String passRaka = "greenday89";
 
     // kodeListrikPrabayar
     String tokenOKFirst = "01428800700";
