@@ -20,8 +20,8 @@ public class MobileBPJSSepulsaKredit extends BaseStep {
         driver.resetApp();
         popUpPage.disableGPS();
         mainPage.klikMulai();
-        mainPage.isiIdSignIn(InputSepulsa.signinPhone);
-        mainPage.isiPasswordSignIn(InputSepulsa.signinPassword);
+        mainPage.isiIdSignIn(InputSepulsa.registerPhone);
+        mainPage.isiPasswordSignIn(InputSepulsa.registerPassword);
         mainPage.submitSignIn();
         createScreenshots.captureScreenShots();
     }
@@ -48,6 +48,12 @@ public class MobileBPJSSepulsaKredit extends BaseStep {
     @When("^user memasukkan no BPJS Kesehatan yang akan dilunasi dengan Sepulsa Kredit$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_akan_dilunasi_dengan_Sepulsa_Kredit() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsOK);
+        createScreenshots.captureScreenShots();
+    }
+
+    @When("^user memasukkan no BPJS Kesehatan yang akan dilunasi dengan Sepulsa Kredit yang saldonya kurang$")
+    public void user_memasukkan_no_BPJS_Kesehatan_yang_akan_dilunasi_dengan_Sepulsa_Kredit_yang_saldonya_kurang() throws Throwable {
+        bayarBPJS.isiNoBPJS(InputSepulsa.bpjsPaid);
         createScreenshots.captureScreenShots();
     }
 

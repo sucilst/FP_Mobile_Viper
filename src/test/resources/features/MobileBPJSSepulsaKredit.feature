@@ -20,7 +20,7 @@ Given user telah login di aplikasi mobile Sepulsa untuk bayar BPJS dengan metode
 And user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar BPJS dengan metode Sepulsa Kredit
 When user tap tombol Bayar BPJS Kesehatan untuk bayar BPJS dengan Sepulsa Kredit
 And user memasukkan nomor handphone untuk syarat bayar BPJS dengan Sepulsa Kredit
-And user memasukkan no BPJS Kesehatan yang akan dilunasi dengan Sepulsa Kredit
+And user memasukkan no BPJS Kesehatan yang akan dilunasi dengan Sepulsa Kredit yang saldonya kurang
 And informasi tagihan BPJS Kesehatan yang akan dibayar dengan Sepulsa Kredit muncul di layar
 And user tap tombol Bayar Tagihan untuk melanjutkan pembayaran BPJS dengan Sepulsa Kredit
 And deposit Sepulsa Kredit kurang dari tagihan BPJS Kesehatan
