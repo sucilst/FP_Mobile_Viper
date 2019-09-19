@@ -22,6 +22,8 @@ public interface InputSepulsa {
     String emptyNumber = "08973788230";
     String emptyEmail = "cobatesapapun@gmail.com";
 
+    String noFarras = "081259104836";
+    String passFarras = "greenday89";
 
     // kodeListrikPrabayar
     String tokenOKFirst = "01428800700";
