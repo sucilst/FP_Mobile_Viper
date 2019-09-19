@@ -1,7 +1,5 @@
 Feature: isi pulsa dengan pembayaran Sepulsa Kredit
-  @pulsaSK
-
-    @pulsaSK_input_full
+   @pulsaSK_input_full
   Scenario Outline:  Transaksi Sukses (user berhasil melakukan isi pulsa dengan aplikasi mobile Sepulsa menggunakan input nomor manual)
     Given user telah login di aplikasi mobile Sepulsa (pulsa SK)
     And user berada di halaman beranda Sepulsa (pulsa SK)
