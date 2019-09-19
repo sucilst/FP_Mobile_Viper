@@ -21,45 +21,54 @@ public class MobilePulsaMandiri extends BaseStep {
     @Given("^user telah login di aplikasi mobile Sepulsa \\(pulsa Mandiri\\)$")
     public void user_telah_login_di_aplikasi_mobile_Sepulsa_pulsa_Mandiri() throws Throwable {
         driver.resetApp();
+        popUpPage.disableGPS();
         mainPage.klikMulai();
         mainPage.isiIdSignIn(InputSepulsa.noTara1);
         mainPage.isiPasswordSignIn(InputSepulsa.passTara1);
         mainPage.submitSignIn();
+        createScreenshots.captureScreenShots();
     }
 
     @Given("^user berada di halaman beranda Sepulsa \\(pulsa Mandiri\\)$")
     public void user_berada_di_halaman_beranda_Sepulsa_pulsa_Mandiri() throws Throwable {
         beranda.sudahDiBeranda();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap tombol Isi Pulsa \\(pulsa Mandiri\\)$")
     public void user_tap_tombol_Isi_Pulsa_pulsa_Mandiri() throws Throwable {
         beranda.menuPulsa();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user mengetik nomor handphone yang akan diisi pulsanya \\(pulsa Mandiri\\)$")
     public void user_mengetik_nomor_handphone_yang_akan_diisi_pulsanya_pulsa_Mandiri() throws Throwable {
         isiPulsa.isiFieldNoHP(InputSepulsa.no1_success);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih nominal \"([^\"]*)\" yang akan dibeli \\(pulsa Mandiri\\)$")
     public void user_memilih_nominal_yang_akan_dibeli_pulsa_Mandiri(int pulsa) throws Throwable {
         isiPulsa.pilihNominal(pulsa);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user melihat harga \"([^\"]*)\" yang harus dibayar \\(pulsa Mandiri\\)$")
     public void user_melihat_harga_yang_harus_dibayar_pulsa_Mandiri(int pulsa) throws Throwable {
         isiPulsa.validateNominal(pulsa);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih metode pembayaran Mandiri Virtual Account \\(pulsa Mandiri\\)$")
     public void user_memilih_metode_pembayaran_Mandiri_Virtual_Account_pulsa_Mandiri() throws Throwable {
         isiPulsa.pilihPembayaranMandiri();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap pada tombol Bayar \\(pulsa Mandiri\\)$")
     public void user_tap_pada_tombol_Bayar_pulsa_Mandiri() throws Throwable {
         isiPulsa.klikTombolBayar();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user masuk ke halaman Informasi Pembayaran \\(pulsa Mandiri\\)$")
@@ -67,17 +76,23 @@ public class MobilePulsaMandiri extends BaseStep {
         popUpPage.munculKamuSukaSepulsa();
         popUpPage.munculAutoPay();
         isiPulsa.halamanMandiri();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user membayar lunas tagihan melalui Mandiri Virtual Account \\(pulsa Mandiri\\)$")
     public void user_membayar_lunas_tagihan_melalui_Mandiri_Virtual_Account_pulsa_Mandiri() throws Throwable {
-        isiPulsa.clickDoneButton();
-        beranda.sudahDiBeranda();
+        plnPostpaid.tungguProsesPembayaran();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^status pemesanan pulsa pada halaman History berubah menjadi INVOICED \\(pulsa Mandiri\\)$")
     public void status_pemesanan_pulsa_pada_halaman_History_berubah_menjadi_INVOICED_pulsa_Mandiri() throws Throwable {
-
+        isiPulsa.clickDoneButton();
+        beranda.sudahDiBeranda();
+        beranda.klikMenuHistory();
+        history.sudahDiHistory();
+        history.cekTransaksiSukses();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 2------------------------------------------------------
@@ -85,11 +100,13 @@ public class MobilePulsaMandiri extends BaseStep {
     @When("^user tap tombol Ambil No Handphone dari Phone Book \\(pulsa Mandiri\\)$")
     public void user_tap_tombol_Ambil_No_Handphone_dari_Phone_Book_pulsa_Mandiri() throws Throwable {
         isiPulsa.clickPhoneBook();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih kontak yang akan diisi pulsanya \\(pulsa Mandiri\\)$")
     public void user_memilih_kontak_yang_akan_diisi_pulsanya_pulsa_Mandiri() throws Throwable {
         isiPulsa.pilihContact();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 3------------------------------------------------------
@@ -97,16 +114,19 @@ public class MobilePulsaMandiri extends BaseStep {
     @When("^user memasukkan nomor telepon \"([^\"]*)\" dengan jumlah kurang dari delapan digit \\(pulsa Mandiri\\)$")
     public void user_memasukkan_nomor_telepon_dengan_jumlah_kurang_dari_delapan_digit_pulsa_Mandiri(String no) throws Throwable {
         isiPulsa.isiFieldNoHP(no);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih nominal pulsa \\(pulsa Mandiri\\)$")
     public void user_memilih_nominal_pulsa_pulsa_Mandiri() throws Throwable {
         isiPulsa.pilihNominal(50);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^akan muncul notifikasi 'Nomor handphone kurang dari delapan digit' \\(pulsa Mandiri\\)$")
     public void akan_muncul_notifikasi_Nomor_handphone_kurang_dari_delapan_digit_pulsa_Mandiri() throws Throwable {
         isiPulsa.validateToast();
+        createScreenshots.captureScreenShots();
     }
 
 }

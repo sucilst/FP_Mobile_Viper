@@ -23,7 +23,7 @@ public class CreateScreenshots extends AbstractObjectScreen {
 
     public void captureScreenShots() throws IOException {
         // add folder name to save the screenshots
-        String folder_name = "screenshots/pulsapermata";
+        String folder_name = "screenshots/pulsamandiri";
         File f=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         //Date format fot screenshot file name
         DateFormat df = new  SimpleDateFormat("dd-MM-yyyy__HH_mm_ss");
