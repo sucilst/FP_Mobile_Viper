@@ -64,6 +64,9 @@ public class MainPage extends AbstractObjectScreen {
     @AndroidFindBy(id = "com.sepulsa.androiddev:id/av_btn_verifikasi")
     protected AndroidElement buttonVerifikasi;
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"KIRIM OTP\")")
+    protected AndroidElement buttonKirimOTP;
+
     public MainPage(AndroidDriver driver) {
         super(driver);
     }
@@ -172,4 +175,19 @@ public class MainPage extends AbstractObjectScreen {
         buttonVerifikasi.click();
     }
 
+    public void diHalamanOTP(){
+        Assert.assertTrue(buttonKirimOTP.isDisplayed());
+    }
+
+    public void kolomEmailSignInKosong(){
+        fieldUserSignIn.clear();
+    }
+
+    public void kolomPasswordSignInKosong(){
+        fieldPasswordSignIn.clear();
+    }
+
+    public void signinHarusLengkap(){
+        Assert.assertTrue(toastMessage.getText().equals(InputSepulsa.kolomSignInKurang));
+    }
 }
