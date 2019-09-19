@@ -125,4 +125,18 @@ public class PopUpPage extends AbstractObjectScreen {
         }
         Assert.assertEquals(alertMessage.getText(),InputSepulsa.sudahPernahRegister);
     }
+
+    public void akunError(){
+        if(popupInvalidInput.isDisplayed()) {
+            Assert.assertEquals(popupInvalidInput.getText(), InputSepulsa.headerInputSalah);
+        }
+        Assert.assertEquals(alertMessage.getText(),InputSepulsa.akunDiblok);
+    }
+
+    public void inputSalah(){
+        if(popupInvalidInput.isDisplayed()) {
+            Assert.assertEquals(popupInvalidInput.getText(), InputSepulsa.headerInputSalah);
+        }
+        Assert.assertEquals(alertMessage.getText(),InputSepulsa.inputSalah);
+    }
 }

@@ -1,5 +1,4 @@
 Feature: isi pulsa dengan pembayaran BCA
-  @pulsaBCA
 
   @pulsaBCA_input
   Scenario Outline:  Transaksi Sukses (user berhasil melakukan isi pulsa dengan aplikasi mobile Sepulsa menggunakan input nomor manual)

@@ -19,6 +19,8 @@ public interface InputSepulsa {
     String passTara2 = "testersepulsa123";
     String noRaka = "081242504777";
     String passRaka = "rakaganteng";
+    String emptyNumber = "08973788230";
+    String emptyEmail = "cobatesapapun@gmail.com";
 
 
     // kodeListrikPrabayar
@@ -56,6 +58,10 @@ public interface InputSepulsa {
     String inputHPTidakValid = "Nomor HP tidak valid.";
     String sudahPernahRegister = "Email sudah terdaftar. Silahkan login.";
     String emailSudahTerdaftar = "Email sudah terdaftar";
+    String akunDiblok = "Akun di block. Silahkan kontak CS.";
+    String inputSalah = "Email atau password salah.";
+    String headerInputSalah = "Email/Password Wrong.";
+    String kolomSignInKurang = "Phone/Email and password is required";
 
     // credit card
     String creditCardNumber = "4811 1111 1111 1114";

@@ -61,7 +61,7 @@ Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (nomor tidak valid)
   Then muncul notifikasi "ID Pelanggan salah" sehingga tidak bisa melanjutkan pemesanan (PLN Prabayar, BCA VA)
 
   @PLNPrabayarBCA
-  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (kolom ID Pelanggan Kosong)
+  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan
     Given user telah login di aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     And user berada di halaman beranda aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     When user tap tombol Listrik PLN untuk beli token listrik dengan BCA Virtual Account
@@ -70,7 +70,7 @@ Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (nomor tidak valid)
     Then keterangan pelanggan yang akan membeli token listrik dengan metode bayar BCA Virtual Account tidak muncul
 
   @PLNPrabayarBCA
-  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (kolom ID Pelanggan Kosong)
+  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan
     Given user telah login di aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     And user berada di halaman beranda aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     When user tap tombol Listrik PLN untuk beli token listrik dengan BCA Virtual Account
@@ -79,7 +79,7 @@ Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (nomor tidak valid)
     Then keterangan pelanggan yang akan membeli token listrik dengan metode bayar BCA Virtual Account tidak muncul
 
   @PLNPrabayarBCA
-  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan (kolom ID Pelanggan Kosong)
+  Scenario: Pembelian PLN Prabayar tidak dapat dilanjutkan
     Given user telah login di aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     And user berada di halaman beranda aplikasi mobile Sepulsa untuk beli token listrik dengan BCA Virtual Account
     When user tap tombol Listrik PLN untuk beli token listrik dengan BCA Virtual Account
