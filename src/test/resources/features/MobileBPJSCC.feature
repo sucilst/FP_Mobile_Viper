@@ -25,7 +25,7 @@ Feature: [MOBILE] Pembayaran BPJS menggunakan Metode Pembayaran Credit Card
     And tombol Bayar Tagihan untuk melanjutkan pembayaran BPJS tidak muncul (BPJS CC)
 
   @BPJS_cc_invalid
-  Scenario Outline: Transaksi BPJS Kesehatan Berhasil (tagihan dibayar sebelum batas waktu habis)
+  Scenario Outline: Transaksi BPJS Kesehatan Gagal (input CC invalid)
     Given user telah login di aplikasi mobile Sepulsa untuk bayar BPJS (BPJS CC)
     And user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar BPJS (BPJS CC)
     When user tap tombol Bayar BPJS Kesehatan untuk untuk bayar BPJS (BPJS CC)
