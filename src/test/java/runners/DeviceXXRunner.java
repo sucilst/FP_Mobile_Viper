@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@plnPostpaid_CC_success,@plnPostpaid_CC_ID_invalid,@plnPostpaid_CC_empty,@plnPostpaid_CC_bill_paid",
+        tags = "@plnPrabayar_cc_success,@plnPrabayar_cc_id_error,@plnPrabayar_cc_id_kosong",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",
