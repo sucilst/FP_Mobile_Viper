@@ -63,7 +63,7 @@ public class PopUpPage extends AbstractObjectScreen {
 
     public void disableGPS() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
             if (popupActivateGPS.isDisplayed())
                 buttonCancelGPS.click();
         } catch (Exception e){}

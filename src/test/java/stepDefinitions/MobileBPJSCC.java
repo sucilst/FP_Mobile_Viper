@@ -20,51 +20,62 @@ public class MobileBPJSCC extends BaseStep {
     @Given("^user telah login di aplikasi mobile Sepulsa untuk bayar BPJS \\(BPJS CC\\)$")
     public void user_telah_login_di_aplikasi_mobile_Sepulsa_untuk_bayar_BPJS_BPJS_CC() throws Throwable {
         driver.resetApp();
+        popUpPage.disableGPS();
         mainPage.klikMulai();
         mainPage.isiIdSignIn(InputSepulsa.noTara1);
         mainPage.isiPasswordSignIn(InputSepulsa.passTara1);
         mainPage.submitSignIn();
+        createScreenshots.captureScreenShots();
     }
 
     @Given("^user berada di halaman beranda aplikasi mobile Sepulsa untuk bayar BPJS \\(BPJS CC\\)$")
     public void user_berada_di_halaman_beranda_aplikasi_mobile_Sepulsa_untuk_bayar_BPJS_BPJS_CC() throws Throwable {
         beranda.sudahDiBeranda();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap tombol Bayar BPJS Kesehatan untuk untuk bayar BPJS \\(BPJS CC\\)$")
     public void user_tap_tombol_Bayar_BPJS_Kesehatan_untuk_untuk_bayar_BPJS_BPJS_CC() throws Throwable {
         beranda.menuBPJS();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan nomor handphone untuk syarat bayar BPJS \\(BPJS CC\\)$")
     public void user_memasukkan_nomor_handphone_untuk_syarat_bayar_BPJS_BPJS_CC() throws Throwable {
-
+        bayarBPJS.fieldHPKosong();
+        bayarBPJS.isiNoHP(InputSepulsa.noRaka);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memasukkan no BPJS Kesehatan yang akan dibayar \\(BPJS CC\\)$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_akan_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsOK);
+        createScreenshots.captureScreenShots();
     }
 
     @When("^informasi tagihan BPJS yang akan dibayar muncul di layar \\(BPJS CC\\)$")
     public void informasi_tagihan_BPJS_yang_akan_dibayar_muncul_di_layar_BPJS_CC() throws Throwable {
         bayarBPJS.cekStatusPeserta();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap tombol Bayar Tagihan untuk lanjut pembayaran BPJS \\(BPJS CC\\)$")
     public void user_tap_tombol_Bayar_Tagihan_untuk_lanjut_pembayaran_BPJS_BPJS_CC() throws Throwable {
         bayarBPJS.bayarSekarang();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user memilih metode pembayaran Credit Card untuk membayar tagihan BPJS \\(BPJS CC\\)$")
     public void user_memilih_metode_pembayaran_Credit_Card_untuk_membayar_tagihan_BPJS_BPJS_CC() throws Throwable {
         bayarBPJS.pilihCC();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user tap pada tombol Bayar untuk membayar tagihan BPJS \\(BPJS CC\\)$")
     public void user_tap_pada_tombol_Bayar_untuk_membayar_tagihan_BPJS_BPJS_CC() throws Throwable {
         bayarBPJS.isiCreditCard();
         bayarBPJS.klikBayar();
+        createScreenshots.captureScreenShots();
     }
 
     @When("^user masuk ke halaman Informasi Pembayaran BPJS yang harus dibayar \\(BPJS CC\\)$")
@@ -72,14 +83,18 @@ public class MobileBPJSCC extends BaseStep {
         bayarBPJS.isiMidtrans();
         popUpPage.munculKamuSukaSepulsa();
         popUpPage.munculAutoPay();
-        plnPostpaid.diHalamanTagihanCC();
         bayarBPJS.diHalamanTagihanCC();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^transaksi bayar tagihan BPJS Kesehatan dengan metode CC pada halaman History muncul di daftar Transaksi Sukses \\(BPJS CC\\)$")
     public void transaksi_bayar_tagihan_BPJS_Kesehatan_dengan_metode_CC_pada_halaman_History_muncul_di_daftar_Transaksi_Sukses_BPJS_CC() throws Throwable {
         bayarBPJS.klikDoneButton();
         beranda.sudahDiBeranda();
+        beranda.klikMenuHistory();
+        history.sudahDiHistory();
+        history.cekTransaksiSukses();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 2------------------------------------------------------
@@ -87,16 +102,19 @@ public class MobileBPJSCC extends BaseStep {
     @When("^user mengosongkan kolom BPJS Kesehatan yang akan dibayar \\(BPJS CC\\)$")
     public void user_mengosongkan_kolom_BPJS_Kesehatan_yang_akan_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.fieldNoBPJSKosong();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^informasi tagihan BPJS Kesehatan yang harus dibayar tidak akan muncul \\(BPJS CC\\)$")
     public void informasi_tagihan_BPJS_Kesehatan_yang_harus_dibayar_tidak_akan_muncul_BPJS_CC() throws Throwable {
         bayarBPJS.statusTagihanTidakMuncul();
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^tombol Bayar Tagihan untuk melanjutkan pembayaran BPJS tidak muncul \\(BPJS CC\\)$")
     public void tombol_Bayar_Tagihan_untuk_melanjutkan_pembayaran_BPJS_tidak_muncul_BPJS_CC() throws Throwable {
         bayarBPJS.buttonBayarTidakMuncul();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 3------------------------------------------------------
@@ -104,11 +122,12 @@ public class MobileBPJSCC extends BaseStep {
     @When("^memasukan \"([^\"]*)\" yang salah saat memasukan credit card \\(BPJS CC\\)$")
     public void memasukan_yang_salah_saat_memasukan_credit_card_BPJS_CC(String detail) throws Throwable {
         bayarBPJS.isiCreditCardInvalid(detail);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^transaksi tidak bisa dilanjutkan karena error \\(BPJS CC\\)$")
     public void transaksi_tidak_bisa_dilanjutkan_karena_error_BPJS_CC() throws Throwable {
-
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 4------------------------------------------------------
@@ -116,11 +135,13 @@ public class MobileBPJSCC extends BaseStep {
     @When("^user memasukkan no BPJS Kesehatan yang tidak valid untuk dibayar \\(BPJS CC\\)$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_tidak_valid_untuk_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsFail);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^layar akan menunjukkan bahwa nomor BPJS tidak terdaftar dan tidak dapat dibayar \\(BPJS CC\\)$")
     public void layar_akan_menunjukkan_bahwa_nomor_BPJS_tidak_terdaftar_dan_tidak_dapat_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.nomorBPJSSalah();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 5------------------------------------------------------
@@ -128,11 +149,13 @@ public class MobileBPJSCC extends BaseStep {
     @When("^user memasukkan no BPJS Kesehatan yang sudah dibayar untuk dibayar \\(BPJS CC\\)$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_sudah_dibayar_untuk_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsOK);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^layar akan menunjukkan bahwa tagihan BPJS sudah terbayar sehingga tidak dapat dibayar \\(BPJS CC\\)$")
     public void layar_akan_menunjukkan_bahwa_tagihan_BPJS_sudah_terbayar_sehingga_tidak_dapat_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.nomorSudahDibayar();
+        createScreenshots.captureScreenShots();
     }
 
     //--------------------------------------------------SCENARIO 6------------------------------------------------------
@@ -140,11 +163,13 @@ public class MobileBPJSCC extends BaseStep {
     @When("^user memasukkan no BPJS Kesehatan yang digitnya kurang untuk dibayar \\(BPJS CC\\)$")
     public void user_memasukkan_no_BPJS_Kesehatan_yang_digitnya_kurang_untuk_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.isiNoBPJS(InputSepulsa.bpjsShort);
+        createScreenshots.captureScreenShots();
     }
 
     @Then("^layar akan menunjukkan bahwa nomor BPJS salah dan tidak dapat dibayar \\(BPJS CC\\)$")
     public void layar_akan_menunjukkan_bahwa_nomor_BPJS_salah_dan_tidak_dapat_dibayar_BPJS_CC() throws Throwable {
         bayarBPJS.nomorBPJSSalah();
+        createScreenshots.captureScreenShots();
     }
 
 }

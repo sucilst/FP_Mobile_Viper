@@ -1,5 +1,4 @@
 Feature: membayar tagihan PLN Postpaid menggunakan CC
-  @plnPostpaid_CC
 
   @plnPostpaid_CC_success
   Scenario: sukses membayar tagihan PLN Postpaid
@@ -18,7 +17,6 @@ Feature: membayar tagihan PLN Postpaid menggunakan CC
     And user memasukkan password pembayaran (pln poastpaid cc)
     Then user diarahkan ke halaman Informasi Pembayaran (pln poastpaid cc)
     And status pemesanan pulsa pada halaman History berubah menjadi INVOICED (pln poastpaid cc)
-    And bukti pembayaran PLN Pascabayar diterima di email pelanggan (pln poastpaid cc)
 
   @plnPostpaid_CC_ID_invalid
   Scenario: Transaksi PLN Pascabayar tidak dapat dilanjutkan (nomor tidak valid)

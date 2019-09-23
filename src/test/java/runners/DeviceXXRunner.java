@@ -11,7 +11,7 @@ import utils.BaseAppium;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@BPJS_cc_idkurang",
+        tags = "@pulsaSK_input_full, @pulsaSK_phonebook,@pulsaSK_noHPInvalid,@pulsaSK_input_split,@pulsaSK_input_nol",
         glue = "stepDefinitions",
         plugin = {
                 "pretty",
